@@ -1,0 +1,105 @@
+"swagger": "2.0"
+"info":
+  "title": "Food Ordering System API"
+  "description": "API for placing food orders and displaying queue numbers"
+  "version": "1.0.0"
+"schemes":
+  - "https"
+"paths":
+  "/order":
+    "post":
+      "summary": "Place a new order"
+      "parameters":
+        - "name": "order"
+          "in": "body"
+          "required": true
+          "schema":
+            "type": "object"
+            "properties":
+              "items":
+                "type": "array"
+                "items":
+                  "type": "object"
+                  "properties":
+                    "itemName":
+                      "type": "string"
+                    "quantity":
+                      "type": "integer"
+                  "required":
+                    - "itemName"
+                    - "quantity"
+              "checkboxDeclare":
+                "type": "boolean"
+            "required":
+              - "items"
+              - "checkboxDeclare"
+      "responses":
+        "200":
+          "description": "Order placed successfully"
+          "schema":
+            "type": "object"
+            "properties":
+              "queueNum":
+                "type": "integer"
+        "400":
+          "description": "Invalid input"
+  "/queue-numbers":
+    "get":
+      "summary": "Get a list of queue numbers with different statuses"
+      "responses":
+        "200":
+          "description": "Successful response"
+          "schema":
+            "type": "object"
+            "properties":
+              "collection":
+                "type": "integer"
+              "preparing":
+                "type": "array"
+                "items":
+                  "type": "integer"
+"definitions":
+  "OrderRequest":
+    "type": "object"
+    "properties":
+      "items":
+        "type": "array"
+        "items":
+          "type": "object"
+          "properties":
+            "itemName":
+              "type": "string"
+            "quantity":
+              "type": "integer"
+          "required":
+            - "itemName"
+            - "quantity"
+      "checkboxDeclare":
+        "type": "boolean"
+    "required":
+      - "items"
+      - "checkboxDeclare"
+  "OrderItem":
+    "type": "object"
+    "properties":
+      "itemName":
+        "type": "string"
+      "quantity":
+        "type": "integer"
+    "required":
+      - "itemName"
+      - "quantity"
+  "OrderResponse":
+    "type": "object"
+    "properties":
+      "queueNum":
+        "type": "integer"
+  "QueueStatus":
+    "type": "object"
+    "properties":
+      "collection":
+        "type": "integer"
+      "preparing":
+        "type": "array"
+        "items":
+          "type": "integer"
