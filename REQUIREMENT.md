@@ -74,6 +74,7 @@
    - a submit button at the bottom of the form to send the request
 
    - to call `POST '/order'` to send out the order and receive a queue number (refer to [swagger](swagger.yaml) on the expected request and response payload)
+      - the item name is case-sensitive and must match exactly as those provided in the [1b](#food-listing)
 
    - upon successful submission request, to show a green banner at the top of the order page with the responded queue number, and with all the form fields cleared
 
