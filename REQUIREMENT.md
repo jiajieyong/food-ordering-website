@@ -74,7 +74,8 @@
    - a submit button at the bottom of the form to send the request
 
    - to call `POST '/order'` to send out the order and receive a queue number (refer to [swagger](swagger.yaml) on the expected request and response payload)
-      - the item name is case-sensitive and must match exactly as those provided in the [1b](#food-listing)
+
+     - the item name is case-sensitive and must match exactly as those provided in the [1b](#food-listing)
 
    - upon successful submission request, to show a green banner at the top of the order page with the responded queue number, and with all the form fields cleared
 
@@ -117,6 +118,9 @@ List of pages given:
 - http://localhost:3000/menu
 - http://localhost:3000/order
 - http://localhost:3000/queue
+
+### API endpoints
+To launch the backend that hosts the API endpoints, you can either use this [dockerfile](/backend/Dockerfile), or run the [jar](/backend/xyz-company-0.0.1-SNAPSHOT.jar) using Java.
 
 ## Preferred Tech Stacks
 
