@@ -1,4 +1,4 @@
-import { Menubar, MenubarMenu, MenubarTrigger } from "../components/ui/menubar";
+import Navigation from  "../components/composite/navigation";
 import "../globals.css";
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -7,17 +7,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <title>Food Ordering Website</title>
       </head>
       <body>
-        <Menubar>
-          <MenubarMenu>
-            <MenubarTrigger>Menu</MenubarTrigger>
-          </MenubarMenu>
-          <MenubarMenu>
-            <MenubarTrigger>Order</MenubarTrigger>
-          </MenubarMenu>
-          <MenubarMenu>
-            <MenubarTrigger>Queue</MenubarTrigger>
-          </MenubarMenu>
-        </Menubar>
+        <Navigation />
         <div className="h-screen">{children}</div>
       </body>
     </html>
