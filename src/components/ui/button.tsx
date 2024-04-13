@@ -11,6 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-red-500 text-white hover:bg-primary/90",
         secondary: "bg-red-300 text-white hover:bg-secondary/80",
+        outline: "border border-input border-red-500 bg-white text-red-500 hover:bg-red-500 hover:text-white"
       },
       size: {
         default: "h-10 px-4 py-2",

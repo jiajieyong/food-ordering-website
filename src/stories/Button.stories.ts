@@ -31,3 +31,10 @@ export const Secondary: Story = {
     children:  "Button"
   },
 };
+
+export const Outline: Story = {
+  args: {
+    variant: 'outline',
+    children:  "Button"
+  },
+};
