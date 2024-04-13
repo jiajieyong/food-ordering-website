@@ -1,7 +1,6 @@
 import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { Button } from "../ui/button"
-import  beehoon from '../../lib/images/noodle/beehoon.jpg' ;
 import {
   Card,
   CardContent,
@@ -11,40 +10,32 @@ import {
   CardTitle,
 } from "../ui/card"
 
-
-const notifications = [
-  {
-    title: "Your call has been confirmed.",
-    description: "1 hour ago",
-  },
-  {
-    title: "You have a new message!",
-    description: "1 hour ago",
-  },
-  {
-    title: "Your subscription is expiring soon!",
-    description: "2 hours ago",
-  },
-]
+interface IDetails {
+  dishName: string;
+  pricing: number;
+  description: string;
+  category: string;
+  image: string;
+}
 
 type CardProps = React.ComponentProps<typeof Card>
 
-export function CardDisplay({ className, ...props }: CardProps) {
+export function CardDisplay(details: IDetails, { className, ...props }: CardProps) {
   return (
-    <Card className={cn("w-[380px]", className)} {...props}>
+    <Card className={cn("w-[300px]", className)} {...props}>
       <CardHeader>
-        <CardTitle>Bee Hoon</CardTitle>
-        <CardDescription>S$ 6.50</CardDescription>
-        <CardDescription>Fried noodle served with egg</CardDescription>
+        <CardTitle>{details.dishName}</CardTitle>
+        <CardDescription>S$ {details.pricing}</CardDescription>
+        <CardDescription>{details.description}</CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
         <div className="grid gap-2">
             <Image
-              alt="Product image"
+              alt={details.dishName}
               className="aspect-square w-full rounded-md object-cover"
-              height="300"
-              src={beehoon}
-              width="300"
+              height="270"
+              src={`images/${details.category}/${details.image}.jpg`}
+              width="270"
             />
         </div>
       </CardContent>

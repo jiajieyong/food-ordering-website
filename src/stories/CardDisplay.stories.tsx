@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { fn } from '@storybook/test';
 import { CardDisplay } from "../components/composite/cardDisplay";
 
 const meta = {
@@ -8,8 +7,7 @@ const meta = {
     parameters: {
         layout: 'centered',
     },
-    tags: ['autodocs'],
-    args: { onClick: fn() },
+    args: { dishName: "Dish Name", pricing: 99.99, description: "Food Description", category: "noodle" , image: "beehoon"  },
 } satisfies Meta<typeof CardDisplay>;
 
 export default meta;
