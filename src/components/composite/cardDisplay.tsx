@@ -10,7 +10,7 @@ import {
   CardTitle,
 } from "../ui/card"
 
-interface IDetails {
+export interface IDetails {
   dishName: string;
   pricing: number;
   description: string;
@@ -20,24 +20,22 @@ interface IDetails {
 
 type CardProps = React.ComponentProps<typeof Card>
 
-export function CardDisplay(details: IDetails, { className, ...props }: CardProps) {
+export function CardDisplay(details: IDetails) {
   return (
-    <Card className={cn("w-[300px]", className)} {...props}>
+    <Card className={cn("w-[300px] bg-white")}>
       <CardHeader>
         <CardTitle>{details.dishName}</CardTitle>
         <CardDescription>S$ {details.pricing}</CardDescription>
         <CardDescription>{details.description}</CardDescription>
       </CardHeader>
-      <CardContent className="grid gap-4">
-        <div className="grid gap-2">
-            <Image
-              alt={details.dishName}
-              className="aspect-square w-full rounded-md object-cover"
-              height="270"
-              src={`images/${details.category}/${details.image}.jpg`}
-              width="270"
-            />
-        </div>
+      <CardContent>
+          <Image
+            alt={details.dishName}
+            className="aspect-square w-full rounded-md object-cover"
+            height="270"
+            src={`/images/${details.category}/${details.image}.jpg`}
+            width="270"
+          />
       </CardContent>
       <CardFooter>
         <Button className="w-full"> Add to cart
