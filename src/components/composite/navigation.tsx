@@ -1,41 +1,36 @@
 "use client";
 
-import { Menubar, MenubarMenu, MenubarTrigger } from "../ui/menubar";
+import { Button } from  "../ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "../ui/sheet";
 import Link from 'next/link';
-import { useState } from "react";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons"
+import { Menu, Package2 } from "lucide-react"
 
 const Navigation = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    const handleNav = () => {
-      setMenuOpen(!menuOpen);
-    }
-
     return (
-      <nav className="fixed w-full h-24 shadow-xl bg-white">
-        <Menubar className="flex justify-between items-center h-full w-full px-4 2xl:px-16">
-          <MenubarMenu>
-            <MenubarTrigger className="ml-10 uppercase hover: border-b text-xl">
-              <Link href="/menu">Menu</Link>
-            </MenubarTrigger>
-          </MenubarMenu>
-          <MenubarMenu>
-            <MenubarTrigger className="ml-10 uppercase hover: border-b text-xl">
-              <Link href="/order">Order</Link>
-            </MenubarTrigger>
-          </MenubarMenu>
-          <MenubarMenu>
-            <MenubarTrigger className="ml-10 uppercase hover: border-b text-xl">
-              <Link href="/queue">Queue</Link>
-            </MenubarTrigger>
-          </MenubarMenu>
-        </Menubar>
-
-        <div onClick={handleNav} className="md:hidden cursor pointer pl-24">
-          <HamburgerMenuIcon/>
-        </div>
-      </nav>
+      <div className="flex min-h-screen w-full flex-col">
+        <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
+          <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
+            <Link href="/menu" className="text-muted-foreground transition-colors hover:text-foreground">Menu</Link>
+            <Link href="/order" className="text-muted-foreground transition-colors hover:text-foreground">Order</Link>
+            <Link href="/queue" className="text-muted-foreground transition-colors hover:text-foreground">Queue</Link>
+          </nav>
+          <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="icon" className="shrink-0 md:hidden">
+              <Menu className="h-5 w-5" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left">
+            <nav className="grid gap-6 text-lg font-medium">
+              <Link href="/menu" className="flex items-center gap-2 text-lg font-semibold"><Package2 className="h-6 w-6" /></Link>
+              <Link href="/menu" className="text-muted-foreground hover:text-foreground">Menu</Link>
+              <Link href="/order" className="text-muted-foreground hover:text-foreground">Orders</Link>
+              <Link href="/queue" className="text-muted-foreground hover:text-foreground">Queue</Link>
+            </nav>
+          </SheetContent>
+        </Sheet>
+        </header>
+      </div>
     );
   };
 

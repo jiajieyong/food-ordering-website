@@ -141,7 +141,7 @@ const MenubarDemo = () => {
 
 
 const meta = {
-    title: 'Composite/Navigation',
+    title: 'Components/UI',
     component: MenubarDemo,
     parameters: {
         layout: 'centered',
