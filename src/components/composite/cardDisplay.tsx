@@ -10,28 +10,34 @@ import {
   CardTitle,
 } from "../ui/card"
 
-export interface IDetails {
-  dishName: string;
+export interface IMenuItem {
+  name: string;
   pricing: number;
   description: string;
   category: string;
-  image: string;
+  imagePath: string;
+}
+interface IDetails {
+  detail: IMenuItem;
 }
 
-export function CardDisplay(details: IDetails) {
+export function CardDisplay(props: IDetails) {
+  const { detail } = props;
+  const { name, pricing, description, category, imagePath } = detail;
+
   return (
     <Card className={cn("w-[300px] bg-white")}>
       <CardHeader>
-        <CardTitle>{details.dishName}</CardTitle>
-        <CardDescription>S$ {details.pricing}</CardDescription>
-        <CardDescription>{details.description}</CardDescription>
+        <CardTitle>{name}</CardTitle>
+        <CardDescription>S$ {pricing}</CardDescription>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent>
           <Image
-            alt={details.dishName}
+            alt={name}
             className="aspect-square w-full rounded-md object-cover"
             height="270"
-            src={`/images/${details.category}/${details.image}.jpg`}
+            src={`/images/${category}/${imagePath}.jpg`}
             width="270"
           />
       </CardContent>
