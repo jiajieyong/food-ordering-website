@@ -2,7 +2,6 @@ import {  Menubar, MenubarCheckboxItem, MenubarContent, MenubarLabel, MenubarMen
 import { Button } from '../ui/button';
 import { ListFilter } from  "lucide-react";
 
-
 interface IProps {
     list: string[],
     filterList: string[],

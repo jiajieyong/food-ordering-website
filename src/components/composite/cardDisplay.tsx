@@ -11,6 +11,7 @@ import {
 } from "../ui/card"
 
 export interface IMenuItem {
+  id: string;
   name: string;
   pricing: number;
   description: string;

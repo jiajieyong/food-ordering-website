@@ -6,9 +6,10 @@ import { useMenuItems } from "@/hooks/useMenuItems";
 
 const MenuPage = () => {
   const CHECK_ITEMS = ['All', 'Noodle', 'Rice', 'Side Dish'];
-  const menu: IMenuItem[] = useMenuItems();
+  const menu = useMenuItems();
+
   const { checkedSelection, onCheckedChange} = useFilterOptions(CHECK_ITEMS);
-  const filteredMenu = useFilterItems(menu, checkedSelection);
+  const filteredMenu = useFilterItems(Object.values(menu), checkedSelection);
 
   return (
     <div className="flex justify-center">
