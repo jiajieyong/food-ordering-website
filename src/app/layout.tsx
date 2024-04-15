@@ -1,3 +1,7 @@
+"use client";
+import { Provider } from "react-redux";
+import { store } from '../redux/store';
+
 import Navigation from  "../components/composite/navigation";
 import "../globals.css";
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
@@ -8,7 +12,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body>
         <Navigation />
-        <div className="h-screen">{children}</div>
+        <Provider store={store}>{children}</Provider>
       </body>
     </html>
   );
