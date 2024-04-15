@@ -9,6 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card"
+import { addToOrder } from "@/redux/orderSlice";
+import { useAppDispatch } from "@/hooks/hooks";
 
 export interface IMenuItem {
   id: string;
@@ -24,7 +26,8 @@ interface IDetails {
 
 export function CardDisplay(props: IDetails) {
   const { detail } = props;
-  const { name, pricing, description, category, imagePath } = detail;
+  const { id, name, pricing, description, category, imagePath } = detail;
+  const dispatch = useAppDispatch();
 
   return (
     <Card className={cn("w-[300px] bg-white")}>
@@ -43,7 +46,11 @@ export function CardDisplay(props: IDetails) {
           />
       </CardContent>
       <CardFooter>
-        <Button className="w-full"> Add to cart
+        <Button
+          className="w-full"
+          onClick={() => dispatch(addToOrder(id))}
+        >
+          Add to cart
         </Button>
       </CardFooter>
     </Card>

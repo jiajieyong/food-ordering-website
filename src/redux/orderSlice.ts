@@ -1,26 +1,37 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { IMenuItem } from '../components/composite/cardDisplay';
-
-export interface MenuItemsState {
-    menuItems: { [id: string]: IMenuItem}
+import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from './store';
+export interface OrderState {
+    items: { [id: string]: number}
 }
 
-const initialState: MenuItemsState ={
-    menuItems: {}
+const initialState: OrderState ={
+    items: {}
 }
 const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
-        // addToOrder: (state, action) => {
-        //     const itemExists = state.find((item) => item.id === action.payload.id);
-        //     if (itemExists) {
-        //         itemExists.quantity++;
-        //     } else {
-        //         state.push({ ...action.payload, quantity: 1});
-        //     }
-        // }
+        addToOrder(state, action: PayloadAction<string>) {
+            const id = action.payload;
+            if (state.items[id]) {
+                state.items[id]++;
+            } else {
+                state.items[id] = 1;
+            }
+        }
     }
 });
 
+export const { addToOrder } = orderSlice.actions;
 export default orderSlice.reducer;
+
+export const getMemoizedNumItems = createSelector(
+    (state: RootState) => state.order.items,
+    (items) => {
+        let numItems = 0;
+        for (let id in items) {
+            numItems += items[id];
+        }
+        return numItems;
+    }
+)
