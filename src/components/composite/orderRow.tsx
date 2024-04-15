@@ -24,7 +24,7 @@ export function OrderRow(props: IDetails) {
                 <Label htmlFor="stock-1" className="sr-only">
                     Price
                 </Label>
-                {pricing}
+                S$ {pricing}
             </TableCell>
             <TableCell>
                 <Label htmlFor="price-1" className="sr-only">
@@ -40,6 +40,7 @@ export function OrderRow(props: IDetails) {
                 </ToggleGroup>
             </TableCell>
             <TableCell>
+                S$ {pricing * quantity}
             </TableCell>
         </TableRow>
     )
