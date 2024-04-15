@@ -1,8 +1,9 @@
+"use client";
+import { OrderTable } from '../../components/composite/orderTable';
+
 const Order = () => {
   return (
-    <>
-      <h1 className="text-4xl text-center">Order</h1>
-    </>
+      <OrderTable/>
   );
 };
 
