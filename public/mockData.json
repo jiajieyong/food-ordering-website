@@ -1,0 +1,106 @@
+[
+    {
+        "id": "342",
+        "name": "Bee Hoon",
+        "pricing": 3.40,
+        "description": "Fried noodle",
+        "category": "noodle",
+        "imagePath": "beehoon.jpg"
+    },
+    {
+        "id": "343",
+        "name": "Laksa",
+        "pricing": 6.50,
+        "description": "Thick rice noodles prepared with a rich and spicy coconut soup",
+        "category": "noodle",
+        "imagePath": "laksa.jpg"
+    },
+    {
+        "id": "344",
+        "name": "Lor Mee",
+        "pricing": 4.50,
+        "description": "Chinese Hokkien noodle dish served in a thick starchy gravy",
+        "category": "noodle",
+        "imagePath": "lormee.jpg"
+    },
+    {
+        "id": "345",
+        "name": "Ramen",
+        "pricing": 9.50,
+        "description": "Wheat noodles served in a broth, topped with sliced pork",
+        "category": "noodle",
+        "imagePath": "ramen.jpg"
+    },
+    {
+        "id": "410",
+        "name": "Beef Don",
+        "pricing": 11.80,
+        "description": "Rice topped with beef and onion simmered in a mildly sweet sauce",
+        "category": "rice",
+        "imagePath": "beefdon.jpg"
+    },
+    {
+        "id": "411",
+        "name": "Chicken Rice",
+        "pricing": 3.50,
+        "description": "Dish of poached chicken and seasoned rice, served with chilli sauce and usually with cucumber garnishes",
+        "category": "rice",
+        "imagePath": "chickenrice.jpg"
+    },
+    {
+        "id": "412",
+        "name": "Cutlet Rice",
+        "pricing": 7.00,
+        "description": "Crispy Fried Chicken Cutlet, coated with savory, umami onion and egg sauce, served on top of rice",
+        "category": "rice",
+        "imagePath": "cutletrice.jpg"
+    },
+    {
+        "id": "413",
+        "name": "Fried Rice",
+        "pricing": 5.00,
+        "description": "Crispy Fried Chicken Cutlet, coated with savory, umami onion and egg sauce, served on top of rice",
+        "category": "rice",
+        "imagePath": "friedrice.jpg"
+    },
+    {
+        "id": "577",
+        "name": "Calamari",
+        "pricing": 5.30,
+        "description": "squid dredged in seasoned flour and fried until crisp and golden",
+        "category": "sideDish",
+        "imagePath": "calamari.jpg"
+    },
+    {
+        "id": "578",
+        "name": "Dumpling",
+        "pricing": 5.50,
+        "description": "Homemade dumplings that are light, fluffy, and tender",
+        "category": "sideDish",
+        "imagePath": "dumpling.jpg"
+    },
+    {
+        "id": "579",
+        "name": "Fried Egg Plant",
+        "pricing": 5.50,
+        "description": "Breaded in parmesan and panko",
+        "category": "sideDish",
+        "imagePath": "friedeggplant.jpg"
+    },
+    {
+        "id": "580",
+        "name": "Fries",
+        "pricing": 4.50,
+        "description": "Melted with cheese and bacon bits",
+        "category": "sideDish",
+        "imagePath": "fries.jpg"
+    },
+    {
+        "id": "581",
+        "name": "Satay",
+        "pricing": 11.20,
+        "description": "Seasoned, skewered and barbecued meat, served with peanut sauce",
+        "category": "sideDish",
+        "imagePath": "satay.jpg"
+    }
+]

@@ -1,5 +1,5 @@
 "use client";
-import { CardDisplay, IMenuItem } from "../../components/composite/cardDisplay";
+import { CardDisplay } from "../../components/composite/cardDisplay";
 import { Filter } from "../../components/composite/filter";
 import { useFilterOptions, useFilterItems } from "@/hooks/useFilter";
 import { useMenuItems } from "@/hooks/useMenuItems";

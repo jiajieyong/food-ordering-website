@@ -33,7 +33,7 @@ export function CardDisplay(props: IDetails) {
             alt={name}
             className="aspect-square w-full rounded-md object-cover"
             height="270"
-            src={`/images/${category}/${imagePath}.jpg`}
+            src={`/images/${category}/${imagePath}`}
             width="270"
           />
       </CardContent>
