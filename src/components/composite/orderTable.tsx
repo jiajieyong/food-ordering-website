@@ -7,7 +7,6 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { OrderRow } from "./orderRow"
-import { IMenuItem } from "./cardDisplay"
 import { useAppSelector } from '@/hooks/hooks';
 
 export function OrderTable() {

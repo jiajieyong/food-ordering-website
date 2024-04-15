@@ -7,12 +7,10 @@ import {
     ToggleGroup,
     ToggleGroupItem,
 } from "@/components/ui/toggle-group"
-import { IMenuItem } from "./cardDisplay"
-
 interface IDetails {
     detail: IMenuItem;
     quantity: number;
-  }
+}
 
 export function OrderRow(props: IDetails) {
     const { detail, quantity } = props;

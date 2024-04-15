@@ -1,6 +1,6 @@
 import { createSlice, createSelector, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
-export interface OrderState {
+interface OrderState {
     items: { [id: string]: number}
 }
 

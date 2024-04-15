@@ -12,14 +12,6 @@ import {
 import { addToOrder } from "@/redux/orderSlice";
 import { useAppDispatch } from "@/hooks/hooks";
 
-export interface IMenuItem {
-  id: string;
-  name: string;
-  pricing: number;
-  description: string;
-  category: string;
-  imagePath: string;
-}
 interface IDetails {
   detail: IMenuItem;
 }

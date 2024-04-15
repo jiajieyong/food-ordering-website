@@ -1,5 +1,4 @@
 import { useState, useMemo } from "react";
-import { IMenuItem } from '../components/composite/cardDisplay';
 
 export function useFilterOptions(filterList: string[]) {
     const [checkedSelection, setCheckedSelection] = useState([filterList[0]]);

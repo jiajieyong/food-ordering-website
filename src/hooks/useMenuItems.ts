@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { IMenuItem } from '../components/composite/cardDisplay';
 import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
 import { receivedMenuItems } from '../redux/menuItemSlice';
 

@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IMenuItem } from '../components/composite/cardDisplay';
-
-export interface MenuItemsState {
+interface MenuItemsState {
     menuItems: { [id: string]: IMenuItem}
 }
 
