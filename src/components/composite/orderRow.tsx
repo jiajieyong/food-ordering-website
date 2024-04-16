@@ -19,30 +19,28 @@ interface IDetails {
     quantity: number;
 }
 
-export function OrderRow(props: IDetails) {
+export function OrderRow({ index, value, remove }: any) {
     const dispatch = useAppDispatch();
-    const { register , setValue, unregister } = useFormContext();
-    const { detail, index, quantity } = props;
-    const { id, name, pricing } = detail;
+    const { register , setValue } = useFormContext();
+    const { identifier, name, pricing, quantity } = value;
     return (
         <TableRow>
-            <input type="hidden" {...register(`order.${index}.name`)} value={name} />
-            <input type="hidden" {...register(`order.${index}.pricing`)} value={pricing} />
-            <input type="hidden" {...register(`order.${index}.quantity`)} value={quantity} />
-
             <TableCell className="font-semibold">
+                <input type="hidden" {...register(`${index}.name`)} value={name} />
                 {name}
             </TableCell>
             <TableCell>
                 <Label htmlFor="stock-1" className="sr-only">
                     Price
                 </Label>
+                <input type="hidden" {...register(`${index}.pricing`)} value={pricing} />
                 S$ {pricing}
             </TableCell>
             <TableCell>
                 <Label htmlFor="price-1" className="sr-only">
                     Quantity
                 </Label>
+                <input type="hidden" {...register(`${index}.quantity`)} value={quantity} />
                 <ToggleGroup
                     type="multiple"
                     variant="outline"
@@ -50,15 +48,15 @@ export function OrderRow(props: IDetails) {
                 <ToggleGroupItem
                     value="-"
                     onClick={() => {
-                        dispatch(decrementQuantity(id));
-                        setValue(`order.${index}.quantity`, quantity-1);
+                        dispatch(decrementQuantity(identifier));
+                        setValue(`orders.${index}.quantity`, quantity-1);
                     }}
                 >-
                 </ToggleGroupItem>
                 <div>{quantity}</div>
                 <ToggleGroupItem value="+" onClick={() => {
-                    dispatch(incrementQuantity(id))
-                    setValue(`order.${index}.quantity`, quantity+1);
+                    dispatch(incrementQuantity(identifier))
+                    setValue(`orders[${index}].quantity`, quantity+1);
                 }}>+</ToggleGroupItem>
                 </ToggleGroup>
             </TableCell>
@@ -71,8 +69,8 @@ export function OrderRow(props: IDetails) {
                     size="sm"
                     className="flex items-center h-7 gap-1 text-sm"
                     onClick={() => {
-                        dispatch(removeFromOrder(id));
-                        unregister(`order.${index}` );
+                        dispatch(removeFromOrder(identifier));
+                        remove(index);
                         }
                     }
                 >

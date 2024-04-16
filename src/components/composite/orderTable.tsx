@@ -1,5 +1,5 @@
 "use client";
-import { useForm, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider, useFieldArray, useFormContext } from 'react-hook-form';
 import {
     Table,
     TableBody,
@@ -11,25 +11,33 @@ import {
 } from "@/components/ui/table";
 import { OrderRow } from "./orderRow";
 import { useAppSelector } from '@/hooks/hooks';
-import { getTotalPrice } from '@/redux/orderSlice';
+import { getTotalPrice } from '@/redux/orderSlice'
 
 type IOrder = {
+    identifer: number,
     name: string,
     quantity: number,
     pricing: number
 }
 
-export interface IFormValues {
-    order: IOrder[]
-}
+// export interface IFormValues {
+//     order: IOrder[]
+// }
 
 export function OrderTable() {
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const orderItems = useAppSelector((state) => state.order.items);
     const totalPrice = useAppSelector(getTotalPrice);
-    const methods = useForm<IFormValues>();
+    const methods = useForm(
+        {defaultValues:  {orders: Object.entries(orderItems).map(([id, quantity]) => (
+                                { name: menuItems[id].name,  pricing: menuItems[id].pricing, quantity: quantity, identifier: id}
+                            ))}
+        }
+    );
 
-    const onSubmit = (data:any) => console.log(data);
+
+
+    const onSubmit = (data:any) => console.log(data.orders);
 
     return (
         <FormProvider {...methods} >
@@ -45,21 +53,14 @@ export function OrderTable() {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {Object.entries(orderItems).map(([id, quantity], index) => (
-                        <OrderRow
-                            key={index}
-                            index={index}
-                            detail={menuItems[id]}
-                            quantity={quantity}
-                        />
-                    ))}
+                    <FormArray />
                 </TableBody>
                 <TableFooter>
                     <TableRow>
                         <TableCell>Total</TableCell>
                         <TableCell/>
                         <TableCell/>
-                        <TableCell>S$ {totalPrice}</TableCell>
+                        <TableCell>S$ ${totalPrice}</TableCell>
                         <TableCell/>
                     </TableRow>
                 </TableFooter>
@@ -67,5 +68,25 @@ export function OrderTable() {
             <input type="submit" />
         </form>
         </FormProvider>
+    )
+}
+
+const FormArray = () => {
+    const { control } = useFormContext();
+    const { fields, remove } = useFieldArray({
+        control,
+        name: 'orders'
+    });
+
+    console.log(fields);
+
+    return (fields.map((field, index) => (
+        <OrderRow
+            key={field.id}
+            index={index}
+            value={field}
+            remove={remove}
+        />
+    ))
     )
 }
