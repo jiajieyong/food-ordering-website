@@ -9,11 +9,11 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { OrderRow } from "./orderRow";
-import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
-import { getTotalPrice, removeFromOrder } from '@/redux/orderSlice';
+import { useAppSelector } from '@/hooks/hooks';
+import { getTotalPrice } from '@/redux/orderSlice';
 
 export function OrderTable() {
-    const dispatch = useAppDispatch();
+
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const orderItems = useAppSelector((state) => state.order.items);
     const totalPrice = useAppSelector(getTotalPrice);
@@ -35,7 +35,6 @@ export function OrderTable() {
                         key={index}
                         detail={menuItems[id]}
                         quantity={quantity}
-                        handleDelete={()=> dispatch(removeFromOrder(id))}
                     />
                 ))}
             </TableBody>

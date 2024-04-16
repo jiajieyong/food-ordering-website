@@ -6,17 +6,19 @@ import { Label } from "../ui/label"
 import {
     ToggleGroup,
     ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+} from "@/components/ui/toggle-group";
+import { useAppDispatch } from '@/hooks/hooks';
+import { incrementQuantity, decrementQuantity, removeFromOrder } from '@/redux/orderSlice';
 import { Button } from "../ui/button";
 import { Trash2 } from  "lucide-react";
 interface IDetails {
     detail: IMenuItem;
     quantity: number;
-    handleDelete: (itemID: string) => void,
 }
 
 export function OrderRow(props: IDetails) {
-    const { detail, quantity, handleDelete } = props;
+    const dispatch = useAppDispatch();
+    const { detail, quantity } = props;
     const { id, name, pricing } = detail;
     return (
         <TableRow>
@@ -37,9 +39,9 @@ export function OrderRow(props: IDetails) {
                     type="multiple"
                     variant="outline"
                 >
-                <ToggleGroupItem value="-">-</ToggleGroupItem>
+                <ToggleGroupItem value="-" onClick={() => dispatch(decrementQuantity(id))}>-</ToggleGroupItem>
                 <div>{quantity}</div>
-                <ToggleGroupItem value="+">+</ToggleGroupItem>
+                <ToggleGroupItem value="+" onClick={() => dispatch(incrementQuantity(id))}>+</ToggleGroupItem>
                 </ToggleGroup>
             </TableCell>
             <TableCell>
@@ -50,7 +52,7 @@ export function OrderRow(props: IDetails) {
                     variant="outline"
                     size="sm"
                     className="flex items-center h-7 gap-1 text-sm"
-                    onClick={() => handleDelete(id)}
+                    onClick={() => dispatch(removeFromOrder(id))}
                 >
                     <Trash2 className="h-3.5 w-3.5" />
                 </Button>

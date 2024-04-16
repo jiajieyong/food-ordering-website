@@ -19,13 +19,19 @@ const orderSlice = createSlice({
                 state.items[id] = 1;
             }
         },
+        incrementQuantity(state, action: PayloadAction<string>) {
+            state.items[action.payload]++;
+        },
+        decrementQuantity(state, action: PayloadAction<string>) {
+            state.items[action.payload]--;
+        },
         removeFromOrder(state,action: PayloadAction<string>) {
             delete state.items[action.payload];
-        }
+        },
     }
 });
 
-export const { addToOrder, removeFromOrder } = orderSlice.actions;
+export const { addToOrder, incrementQuantity, decrementQuantity, removeFromOrder } = orderSlice.actions;
 export default orderSlice.reducer;
 
 export const getMemoizedNumItems = createSelector(
