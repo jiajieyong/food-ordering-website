@@ -11,21 +11,18 @@ import { useAppDispatch } from '@/hooks/hooks';
 import { incrementQuantity, decrementQuantity, removeFromOrder } from '@/redux/orderSlice';
 import { Button } from "../ui/button";
 import { Trash2 } from  "lucide-react";
-import { UseFormRegister, UseFormSetValue, UseFormUnregister } from 'react-hook-form';
-import { IFormValues } from "./orderTable";
+import { useFormContext } from 'react-hook-form';
 
 interface IDetails {
     detail: IMenuItem;
     index: number;
     quantity: number;
-    register: UseFormRegister<IFormValues>;
-    setValue: UseFormSetValue<IFormValues>;
-    unregister: UseFormUnregister<IFormValues>;
 }
 
 export function OrderRow(props: IDetails) {
     const dispatch = useAppDispatch();
-    const { detail, index, quantity, register, setValue, unregister } = props;
+    const { register , setValue, unregister } = useFormContext();
+    const { detail, index, quantity } = props;
     const { id, name, pricing } = detail;
     return (
         <TableRow>

@@ -1,5 +1,5 @@
 "use client";
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import {
     Table,
     TableBody,
@@ -27,12 +27,13 @@ export function OrderTable() {
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const orderItems = useAppSelector((state) => state.order.items);
     const totalPrice = useAppSelector(getTotalPrice);
-    const { register, handleSubmit, setValue, unregister } = useForm<IFormValues>();
+    const methods = useForm<IFormValues>();
 
     const onSubmit = (data:any) => console.log(data);
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <FormProvider {...methods} >
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -50,9 +51,6 @@ export function OrderTable() {
                             index={index}
                             detail={menuItems[id]}
                             quantity={quantity}
-                            register={register}
-                            setValue={setValue}
-                            unregister={unregister}
                         />
                     ))}
                 </TableBody>
@@ -68,5 +66,6 @@ export function OrderTable() {
             </Table>
             <input type="submit" />
         </form>
+        </FormProvider>
     )
 }
