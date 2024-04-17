@@ -11,7 +11,8 @@ import { useAppDispatch } from '@/hooks/hooks';
 import { incrementQuantity, decrementQuantity, removeFromOrder } from '@/redux/orderSlice';
 import { Button } from "../ui/button";
 import { Trash2 } from  "lucide-react";
-import { useFormContext } from 'react-hook-form';
+import { FieldValues, UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
+import FormField from './formField'
 
 interface IDetails {
     detail: IMenuItem;
@@ -19,28 +20,36 @@ interface IDetails {
     quantity: number;
 }
 
-export function OrderRow({ index, value, remove, update }: any) {
+interface IRowProps {
+    index: number;
+    value: any;
+    remove: UseFieldArrayRemove;
+    update: UseFieldArrayUpdate<FieldValues, "orders">
+}
+
+export function OrderRow({ index, value, remove, update }: IRowProps) {
     const dispatch = useAppDispatch();
-    const { register } = useFormContext();
+    const { register, formState: { errors } } = useFormContext();
+    console.log(value);
     const { identifier, name, pricing, quantity } = value;
+
     return (
         <TableRow>
             <TableCell className="font-semibold">
-                <input type="hidden" {...register(`orders.${index}.name`)} value={name} />
+                <input type="hidden" {...register(`orders.${index}.name`)} value={value.name} />
                 {name}
             </TableCell>
             <TableCell>
                 <Label htmlFor="stock-1" className="sr-only">
                     Price
                 </Label>
-                <input type="hidden" {...register(`orders${index}.pricing`)} value={pricing} />
+                <input type="hidden" {...register(`orders.${index}.pricing`)} value={pricing} />
                 S$ {pricing}
             </TableCell>
             <TableCell>
                 <Label htmlFor="price-1" className="sr-only">
                     Quantity
                 </Label>
-                <input type="hidden" {...register(`orders.${index}.quantity`)} value={quantity} />
                 <ToggleGroup
                     type="multiple"
                     variant="outline"
@@ -59,6 +68,14 @@ export function OrderRow({ index, value, remove, update }: any) {
                     update(index, {...value, quantity: quantity+1})
                 }}>+</ToggleGroupItem>
                 </ToggleGroup>
+                <FormField
+                    type="hidden"
+                    name={`orders.${index}.quantity`}
+                    register={register}
+                    error={errors.orders?.[index]?.quantity}
+                    value={quantity}
+                    valueAsNumber
+                />
             </TableCell>
             <TableCell>
                 S$ {pricing * quantity}

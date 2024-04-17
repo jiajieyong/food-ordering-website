@@ -1,5 +1,5 @@
 "use client";
-import { useForm, FormProvider, useFieldArray, useFormContext } from 'react-hook-form';
+import { useForm, FormProvider, useFieldArray, useFormContext, FieldError } from 'react-hook-form';
 import {
     Table,
     TableBody,
@@ -11,27 +11,33 @@ import {
 } from "@/components/ui/table";
 import { OrderRow } from "./orderRow";
 import { useAppSelector } from '@/hooks/hooks';
-import { getTotalPrice } from '@/redux/orderSlice'
+import { getTotalPrice } from '@/redux/orderSlice';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormFieldSchema, FieldSchema } from "@/types/form";
 
-type IOrder = {
-    identifer: number,
+export type IOrder = {
+    identifier: string,
     name: string,
     quantity: number,
     pricing: number
 }
 
-// export interface IFormValues {
-//     order: IOrder[]
-// }
+export interface IFormValues {
+    order: IOrder[]
+}
 
 export function OrderTable() {
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const orderItems = useAppSelector((state) => state.order.items);
     const totalPrice = useAppSelector(getTotalPrice);
     const methods = useForm(
-        {defaultValues:  {orders: Object.entries(orderItems).map(([identifier, quantity]) => (
-                { name: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
-            ))}
+        {
+            defaultValues:  {
+                orders: Object.entries(orderItems).map(([identifier, quantity]) => (
+                    { name: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
+                ))
+            },
+            resolver: zodResolver(FormFieldSchema),
         }
     );
 
@@ -84,6 +90,6 @@ const FormArray = () => {
             remove={remove}
             update={update}
         />
-    ))
+        ))
     )
 }
