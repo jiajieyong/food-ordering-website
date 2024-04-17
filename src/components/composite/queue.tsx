@@ -25,7 +25,7 @@ export function Queue() {
     return (
         <>
             {(status === "LOADING") && <div>loading data</div>}
-            {(status === "SUCCESSFUL") && <div>{queueItems}</div>}
+            {(status === "SUCCESSFUL") && <div>something</div>}
             {(status === "ERROR") && <div>{error}</div>}
         </>
     )
