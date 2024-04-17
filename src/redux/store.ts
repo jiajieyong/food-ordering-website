@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import orderReducer from "./orderSlice";
 import menuItemReducer from  "./menuItemSlice";
+import queueReducer from './queueSlice';
 
 export const store = configureStore({
     reducer: {
         order: orderReducer,
-        menuItem: menuItemReducer
+        menuItem: menuItemReducer,
+        queue: queueReducer,
     }
 });
 

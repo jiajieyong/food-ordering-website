@@ -1,4 +1,5 @@
 "use client";
+import axios from "axios";
 import { useForm, FormProvider, useFieldArray, useFormContext } from 'react-hook-form';
 import {
     Table,
@@ -41,7 +42,7 @@ export function OrderTable() {
         }
     );
 
-    const onSubmit = (data:any) => console.log(data.orders);
+    const onSubmit = (data:any) => console.log(data);
     const { formState: {errors}} = methods;
 
     return (
@@ -75,6 +76,15 @@ export function OrderTable() {
         </form>
         </FormProvider>
     )
+}
+
+const onSubmit = async(data: IOrder[]) => {
+    try {
+        const response = await axios.post("https://localhost:8080/order", data);
+        const { errors = {} } = response.data;
+    } catch (error) {
+        alert("Submitting form failed!")
+    }
 }
 
 const FormArray = () => {
