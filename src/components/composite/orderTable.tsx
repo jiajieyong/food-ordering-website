@@ -11,39 +11,43 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { OrderRow } from "./orderRow";
-import { useAppSelector } from '@/hooks/hooks';
-import { getTotalPrice } from '@/redux/orderSlice';
+import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
+import { getTotalPrice, postOrder } from '@/redux/orderSlice';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormFieldSchema } from "@/types/form";
 
 export type IOrder = {
     identifier: string,
-    name: string,
+    itemName: string,
     quantity: number,
     pricing: number
 }
 
 export interface IFormValues {
-    order: IOrder[]
+    items: IOrder[]
 }
 
 export function OrderTable() {
+    const dispatch = useAppDispatch();
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const orderItems = useAppSelector((state) => state.order.items);
     const totalPrice = useAppSelector(getTotalPrice);
     const methods = useForm(
         {
             defaultValues:  {
-                orders: Object.entries(orderItems).map(([identifier, quantity]) => (
-                    { name: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
-                ))
+                items: Object.entries(orderItems).map(([identifier, quantity]) => (
+                    { itemName: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
+                )),
             },
             resolver: zodResolver(FormFieldSchema),
         }
     );
-
-    const onSubmit = (data:any) => console.log(data);
     const { formState: {errors}} = methods;
+
+    const onSubmit = (data:IFormValues) => {
+        dispatch(postOrder(data));
+    };
+
 
     return (
         <FormProvider {...methods} >
@@ -71,27 +75,27 @@ export function OrderTable() {
                     </TableRow>
                 </TableFooter>
             </Table>
-            {errors && <span className="error-message">{errors.orders?.root?.message}</span>}
+            {errors && <span className="error-message">{errors.items?.root?.message}</span>}
             <input type="submit" />
         </form>
         </FormProvider>
     )
 }
 
-const onSubmit = async(data: IOrder[]) => {
-    try {
-        const response = await axios.post("https://localhost:8080/order", data);
-        const { errors = {} } = response.data;
-    } catch (error) {
-        alert("Submitting form failed!")
-    }
-}
+// const onSubmit = async(data: IOrder[]) => {
+//     try {
+//         const response = await axios.post("https://localhost:8080/order", data);
+//         const { errors = {} } = response.data;
+//     } catch (error) {
+//         alert("Submitting form failed!")
+//     }
+// }
 
 const FormArray = () => {
     const { control } = useFormContext();
     const { fields, remove, update } = useFieldArray({
         control,
-        name: 'orders'
+        name: 'items'
     });
 
     return (fields.map((field, index) => (

@@ -2,7 +2,7 @@ import { z, ZodType } from "zod";
 import { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
 
 export type FormData = {
-    name: string;
+    itemName: string;
     pricing: number;
     quantity: number;
 };
@@ -17,13 +17,13 @@ export type FormFieldProps = {
 };
 
 export type ValidFieldNames =
-| "name"
+| "itemName"
 | "pricing"
 | "quantity"
 
 export const FieldSchema: ZodType<FormData> = z
 .object({
-    name: z.string(),
+    itemName: z.string(),
     pricing: z
         .number(),
     quantity: z
@@ -33,7 +33,7 @@ export const FieldSchema: ZodType<FormData> = z
 });
 
 export const FormFieldSchema = z.object({
-    orders: z.array(FieldSchema).nonempty({
+    items: z.array(FieldSchema).nonempty({
         message: "Order cannnot be empty!",
-      }).max(2, {message: "Limited to 2 food orders"})
+    }).max(2, {message: "Limited to 2 food orders"})
 });

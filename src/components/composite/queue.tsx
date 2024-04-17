@@ -9,8 +9,6 @@ export function Queue() {
     const queue = useAppSelector((state) => state.queue);
     const { queueItems, status, error } = queue;
 
-    console.log(queueItems);
-
     useEffect(() => {
         if (status === 'IDLE') {
             dispatch(getQueue())

@@ -32,7 +32,7 @@ export const getQueue = createAsyncThunk('queue/get', async (_, thunkAPI) => {
         console.log(error);
         return thunkAPI.rejectWithValue(error);
     }
-})
+});
 
 const queueSlice = createSlice({
     name: 'queue',

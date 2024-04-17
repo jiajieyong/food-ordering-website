@@ -24,25 +24,26 @@ interface IRowProps {
     index: number;
     value: any;
     remove: UseFieldArrayRemove;
-    update: UseFieldArrayUpdate<FieldValues, "orders">
+    update: UseFieldArrayUpdate<FieldValues, "items">
 }
 
 export function OrderRow({ index, value, remove, update }: IRowProps) {
     const dispatch = useAppDispatch();
     const { register, formState: { errors } } = useFormContext();
-    const { identifier, name, pricing, quantity } = value;
+    const { identifier, itemName, pricing, quantity } = value;
+    console.log('errors', errors);
 
     return (
         <TableRow>
             <TableCell className="font-semibold">
-                <input type="hidden" {...register(`orders.${index}.name`)} value={value.name} />
-                {name}
+                <input type="hidden" {...register(`items.${index}.itemName`)} value={itemName} />
+                {itemName}
             </TableCell>
             <TableCell>
                 <Label htmlFor="stock-1" className="sr-only">
                     Price
                 </Label>
-                <input type="hidden" {...register(`orders.${index}.pricing`)} value={pricing} />
+                <input type="hidden" {...register(`items.${index}.pricing`)} value={pricing} />
                 S$ {pricing}
             </TableCell>
             <TableCell>
@@ -69,9 +70,9 @@ export function OrderRow({ index, value, remove, update }: IRowProps) {
                 </ToggleGroup>
                 <FormField
                     type="hidden"
-                    name={`orders.${index}.quantity`}
+                    name={`items.${index}.quantity`}
                     register={register}
-                    error={errors.orders?.[index]?.quantity}
+                    error={errors.items?.[index]?.quantity}
                     value={quantity}
                     valueAsNumber
                 />

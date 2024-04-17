@@ -3,9 +3,12 @@ const nextConfig = {
     async rewrites() {
         return [
             {
-                // matching all API routes
                 source: "/queue-numbers",
                 destination: "http://localhost:8080/queue-numbers"
+            },
+            {
+                source: "/order",
+                destination: "http://localhost:8080/order"
             }
         ]
     },
