@@ -29,13 +29,11 @@ export function OrderTable() {
     const orderItems = useAppSelector((state) => state.order.items);
     const totalPrice = useAppSelector(getTotalPrice);
     const methods = useForm(
-        {defaultValues:  {orders: Object.entries(orderItems).map(([id, quantity]) => (
-                                { name: menuItems[id].name,  pricing: menuItems[id].pricing, quantity: quantity, identifier: id}
-                            ))}
+        {defaultValues:  {orders: Object.entries(orderItems).map(([identifier, quantity]) => (
+                { name: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
+            ))}
         }
     );
-
-
 
     const onSubmit = (data:any) => console.log(data.orders);
 
@@ -73,12 +71,10 @@ export function OrderTable() {
 
 const FormArray = () => {
     const { control } = useFormContext();
-    const { fields, remove } = useFieldArray({
+    const { fields, remove, update } = useFieldArray({
         control,
         name: 'orders'
     });
-
-    console.log(fields);
 
     return (fields.map((field, index) => (
         <OrderRow
@@ -86,6 +82,7 @@ const FormArray = () => {
             index={index}
             value={field}
             remove={remove}
+            update={update}
         />
     ))
     )
