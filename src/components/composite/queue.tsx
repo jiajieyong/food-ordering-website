@@ -9,15 +9,11 @@ export function Queue() {
     const queue = useAppSelector((state) => state.queue);
     const { queueItems, status, error } = queue;
 
-    useEffect(() => {
-        let isMounted = true
+    console.log(queueItems);
 
+    useEffect(() => {
         if (status === 'IDLE') {
             dispatch(getQueue())
-        }
-        // Cleanup function
-        return () => {
-            isMounted = false
         }
     }, [status, dispatch])
 
@@ -25,7 +21,19 @@ export function Queue() {
     return (
         <>
             {(status === "LOADING") && <div>loading data</div>}
-            {(status === "SUCCESSFUL") && <div>something</div>}
+            {(status === "SUCCESSFUL") &&
+                (
+                    <>
+                        <div>Ready to collect: {queueItems.collection}</div>
+                        <div>Preparing:</div>
+                        {
+                            queueItems.preparing.map((orderNumber, index) => {
+                                return <div key={index}>{orderNumber}</div>
+                            })
+                        }
+                    </>
+                )
+            }
             {(status === "ERROR") && <div>{error}</div>}
         </>
     )

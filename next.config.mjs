@@ -8,7 +8,8 @@ const nextConfig = {
                 destination: "http://localhost:8080/queue-numbers"
             }
         ]
-    }
+    },
+    reactStrictMode: false,
 };
 
 export default nextConfig;
