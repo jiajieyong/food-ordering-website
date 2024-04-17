@@ -1,5 +1,5 @@
 "use client";
-import { useForm, FormProvider, useFieldArray, useFormContext, FieldError } from 'react-hook-form';
+import { useForm, FormProvider, useFieldArray, useFormContext } from 'react-hook-form';
 import {
     Table,
     TableBody,
@@ -13,7 +13,7 @@ import { OrderRow } from "./orderRow";
 import { useAppSelector } from '@/hooks/hooks';
 import { getTotalPrice } from '@/redux/orderSlice';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FormFieldSchema, FieldSchema } from "@/types/form";
+import { FormFieldSchema } from "@/types/form";
 
 export type IOrder = {
     identifier: string,
@@ -42,6 +42,7 @@ export function OrderTable() {
     );
 
     const onSubmit = (data:any) => console.log(data.orders);
+    const { formState: {errors}} = methods;
 
     return (
         <FormProvider {...methods} >
@@ -69,6 +70,7 @@ export function OrderTable() {
                     </TableRow>
                 </TableFooter>
             </Table>
+            {errors && <span className="error-message">{errors.orders?.root?.message}</span>}
             <input type="submit" />
         </form>
         </FormProvider>

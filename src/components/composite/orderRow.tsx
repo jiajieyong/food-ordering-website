@@ -30,7 +30,6 @@ interface IRowProps {
 export function OrderRow({ index, value, remove, update }: IRowProps) {
     const dispatch = useAppDispatch();
     const { register, formState: { errors } } = useFormContext();
-    console.log(value);
     const { identifier, name, pricing, quantity } = value;
 
     return (

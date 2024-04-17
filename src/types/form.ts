@@ -33,5 +33,7 @@ export const FieldSchema: ZodType<FormData> = z
 });
 
 export const FormFieldSchema = z.object({
-    orders: z.array(FieldSchema)
+    orders: z.array(FieldSchema).nonempty({
+        message: "Order cannnot be empty!",
+      }).max(2, {message: "Limited to 2 food orders"})
 });
