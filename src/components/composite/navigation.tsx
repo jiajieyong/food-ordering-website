@@ -1,7 +1,8 @@
 "use client";
 
 import Link from 'next/link';
-import MainNav from './MainNav';
+import CartNavigation from './cartNavigation';
+import OrderNavigation from './orderNavigation';
 import { Utensils } from 'lucide-react';
 
 const Navigation = () => {
@@ -12,7 +13,10 @@ const Navigation = () => {
           <Link href="/menu" className="text-3xl font-bold tracking-tight text-orange-500">Menu</Link>
           <Utensils className="text-orange-500"/>
         </div>
-        <MainNav />
+        <div className='flex space-x-4'>
+          <OrderNavigation />
+          <CartNavigation />
+        </div>
         {/* <Link href="/queue" className="text-muted-foreground transition-colors hover:text-foreground">Queue</Link> */}
       </div>
     </div>
