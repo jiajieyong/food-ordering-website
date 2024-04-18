@@ -1,7 +1,7 @@
 [
     {
         "id": "342",
-        "name": "Bee Hoon",
+        "name": "Bee hoon",
         "pricing": 3.40,
         "description": "Fried noodle",
         "category": "noodle",
@@ -17,7 +17,7 @@
     },
     {
         "id": "344",
-        "name": "Lor Mee",
+        "name": "Lor mee",
         "pricing": 4.50,
         "description": "Chinese Hokkien noodle dish served in a thick starchy gravy",
         "category": "noodle",
@@ -25,7 +25,7 @@
     },
     {
         "id": "345",
-        "name": "Ramen",
+        "name": "Japanese ramen",
         "pricing": 9.50,
         "description": "Wheat noodles served in a broth, topped with sliced pork",
         "category": "noodle",
@@ -33,7 +33,7 @@
     },
     {
         "id": "410",
-        "name": "Beef Don",
+        "name": "Wagyu don",
         "pricing": 11.80,
         "description": "Rice topped with beef and onion simmered in a mildly sweet sauce",
         "category": "rice",
@@ -41,7 +41,7 @@
     },
     {
         "id": "411",
-        "name": "Chicken Rice",
+        "name": "Chicken rice",
         "pricing": 3.50,
         "description": "Dish of poached chicken and seasoned rice, served with chilli sauce and usually with cucumber garnishes",
         "category": "rice",
@@ -49,7 +49,7 @@
     },
     {
         "id": "412",
-        "name": "Cutlet Rice",
+        "name": "Pork cutlet rice",
         "pricing": 7.00,
         "description": "Crispy Fried Chicken Cutlet, coated with savory, umami onion and egg sauce, served on top of rice",
         "category": "rice",
@@ -57,7 +57,7 @@
     },
     {
         "id": "413",
-        "name": "Fried Rice",
+        "name": "Uncle Roger's fried rice",
         "pricing": 5.00,
         "description": "Crispy Fried Chicken Cutlet, coated with savory, umami onion and egg sauce, served on top of rice",
         "category": "rice",
@@ -73,7 +73,7 @@
     },
     {
         "id": "578",
-        "name": "Dumpling",
+        "name": "8 Dumplings",
         "pricing": 5.50,
         "description": "Homemade dumplings that are light, fluffy, and tender",
         "category": "sideDish",
@@ -81,7 +81,7 @@
     },
     {
         "id": "579",
-        "name": "Fried Egg Plant",
+        "name": "Fried eggplants",
         "pricing": 5.50,
         "description": "Breaded in parmesan and panko",
         "category": "sideDish",
@@ -89,7 +89,7 @@
     },
     {
         "id": "580",
-        "name": "Fries",
+        "name": "Cheese fries",
         "pricing": 4.50,
         "description": "Melted with cheese and bacon bits",
         "category": "sideDish",

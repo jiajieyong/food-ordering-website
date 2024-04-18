@@ -44,8 +44,14 @@ export function OrderTable() {
     const { reset, formState: {errors}} = methods;
 
     const onSubmit = (data:IFormValues) => {
-        dispatch(postOrder(data));
-        reset({items: []});
+        dispatch(postOrder(data))
+            .unwrap()
+            .then((originalPromiseResult) => {
+                reset({items: []});
+            })
+            .catch((rejectedValueOrSerializedError) => {
+                console.log('error');
+            });
     };
 
 

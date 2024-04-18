@@ -7,30 +7,21 @@ type SubmissionState = "SENDING" | "READY" | "ERROR";
 interface OrderState {
     items: { [id: string]: number};
     submissionState: SubmissionState;
-    queueNumber?: number | null;
+    queueNumber: number[];
 }
 
 const initialState: OrderState ={
     items: {},
-    submissionState: "READY"
+    submissionState: "READY",
+    queueNumber: []
 }
 
 export const postOrder = createAsyncThunk('order/post', async (orders: IFormValues, thunkAPI) => {
         try {
-            // const state = thunkAPI.getState() as RootState;
-            let data = {
-                "items": [
-                  {
-                    "itemName": "Bee hoon",
-                    "quantity": 2
-                  },
-                ],
-                "checkboxDeclare": true
-              };
-            axios.post(`http://localhost:3000/order`, data).then((res) => console.log(res));
-            // state.order.queueNumber = res.data;
+            const res = await axios.post(`http://localhost:3000/order`, orders);
+            return res;
         } catch (error) {
-            return thunkAPI.rejectWithValue(error)
+            return thunkAPI.rejectWithValue(error);
         }
     }
 )
@@ -62,13 +53,9 @@ const orderSlice = createSlice({
             state.submissionState = 'SENDING';
         }),
         builder.addCase(postOrder.fulfilled, (state, action) => {
-            // const { success } = action.payload;
-            // if (success) {
-                state.submissionState = "READY";
-                state.items = {}
-            // } else {
-            //     state.submissionState ="ERROR";
-            // }
+            state.submissionState = "READY";
+            state.items = {};
+            state.queueNumber.push(action.payload.data.queueNum);
         }),
         builder.addCase(postOrder.rejected, (state, action) => {
             state.submissionState = 'ERROR';
