@@ -11,8 +11,11 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <title>Food Ordering Website</title>
       </head>
       <body>
-        <Navigation />
-        <Provider store={store}>{children}</Provider>
+
+        <Provider store={store}>
+          <Navigation />
+            {children}
+        </Provider>
       </body>
     </html>
   );
