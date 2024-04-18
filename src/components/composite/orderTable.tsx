@@ -10,7 +10,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { Button } from "../ui/button";
-import { Checkbox } from '@/components/ui/checkbox';
+import { DeclarationBox } from './declarationBox';
 import { OrderRow } from "./orderRow";
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { getTotalPrice, postOrder } from '@/redux/orderSlice';
@@ -28,7 +28,11 @@ export interface IFormValues {
     items: IOrder[]
 }
 
-export function OrderTable() {
+interface IProps {
+    onSuccess: () => void,
+}
+
+export function OrderTable({onSuccess}: IProps) {
     const dispatch = useAppDispatch();
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const order = useAppSelector((state) => state.order);
@@ -50,6 +54,7 @@ export function OrderTable() {
             .unwrap()
             .then((originalPromiseResult) => {
                 reset({items: []});
+                onSuccess();
             })
             .catch((rejectedValueOrSerializedError) => {
                 console.log('error');
@@ -58,52 +63,42 @@ export function OrderTable() {
 
 
     return (
-        <FormProvider {...methods} >
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
-
-            <Table>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className="w-[100px]">Item</TableHead>
-                        <TableHead>Price</TableHead>
-                        <TableHead>Quantity</TableHead>
-                        <TableHead className="w-[100px]">Total</TableHead>
-                        <TableHead />
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    <FormArray />
-                </TableBody>
-                <TableFooter>
-                    <TableRow>
-                        <TableCell>Total</TableCell>
-                        <TableCell/>
-                        <TableCell/>
-                        <TableCell>S$ ${totalPrice}</TableCell>
-                        <TableCell/>
-                    </TableRow>
-                </TableFooter>
-            </Table>
-            <div className="flex flex-col">
-                <div className="items-top flex space-x-2">
-                    <Checkbox id="terms1" required={true}/>
-                    <div className="grid gap-1.5 leading-none">
-                        <label
-                        htmlFor="terms1"
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                            I agree I have no food allergy
-                        </label>
-                    </div>
+        <>
+            <FormProvider {...methods} >
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className="w-[100px]">Item</TableHead>
+                            <TableHead>Price</TableHead>
+                            <TableHead>Quantity</TableHead>
+                            <TableHead className="w-[100px]">Total</TableHead>
+                            <TableHead />
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        <FormArray />
+                    </TableBody>
+                    <TableFooter>
+                        <TableRow>
+                            <TableCell>Total</TableCell>
+                            <TableCell/>
+                            <TableCell/>
+                            <TableCell>S$ ${totalPrice}</TableCell>
+                            <TableCell/>
+                        </TableRow>
+                    </TableFooter>
+                </Table>
+                <div className="flex flex-col">
+                    <DeclarationBox />
+                {errors && <span className="error-message">{errors.items?.root?.message}</span>}
+                    <Button className={"my-8"}>
+                        Submit
+                    </Button>
                 </div>
-            {errors && <span className="error-message">{errors.items?.root?.message}</span>}
-                <Button className={"my-8"}>
-                    Submit
-                </Button>
-
-            </div>
-        </form>
-        </FormProvider>
+            </form>
+            </FormProvider>
+        </>
     )
 }
 

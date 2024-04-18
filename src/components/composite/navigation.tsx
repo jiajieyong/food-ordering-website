@@ -6,7 +6,7 @@ import { Utensils } from 'lucide-react';
 
 const Navigation = () => {
     return (
-      <div className="border-b-2 border-b-orange-500 py-6">
+      <div className="py-6">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex space-x-2 justify-between items-center">
           <Link href="/menu" className="text-3xl font-bold tracking-tight text-orange-500">Menu</Link>

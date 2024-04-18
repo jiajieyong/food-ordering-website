@@ -1,11 +1,22 @@
 "use client";
+import { useState } from "react";
 import { OrderTable } from '../../components/composite/orderTable';
+import { SuccessBanner } from '../../components/composite/successBanner';
 
 const Order = () => {
+  const [successBanner, setSuccessBanner] = useState(false);
+
+  function onSuccess() {
+    setSuccessBanner(true);
+  }
+
   return (
-    <div className="flex items-center justify-center">
-      <OrderTable/>
-    </div>
+    <>
+    { successBanner && <SuccessBanner /> }
+      <div className="py-2 flex items-center justify-center">
+        <OrderTable onSuccess={onSuccess}/>
+      </div>
+    </>
   );
 };
 
