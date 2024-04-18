@@ -1,5 +1,4 @@
 "use client";
-import axios from "axios";
 import { useForm, FormProvider, useFieldArray, useFormContext } from 'react-hook-form';
 import {
     Table,
@@ -30,22 +29,23 @@ export interface IFormValues {
 export function OrderTable() {
     const dispatch = useAppDispatch();
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
-    const orderItems = useAppSelector((state) => state.order.items);
+    const order = useAppSelector((state) => state.order);
     const totalPrice = useAppSelector(getTotalPrice);
     const methods = useForm(
         {
             defaultValues:  {
-                items: Object.entries(orderItems).map(([identifier, quantity]) => (
+                items: Object.entries(order.items).map(([identifier, quantity]) => (
                     { itemName: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
                 )),
             },
             resolver: zodResolver(FormFieldSchema),
         }
     );
-    const { formState: {errors}} = methods;
+    const { reset, formState: {errors}} = methods;
 
     const onSubmit = (data:IFormValues) => {
         dispatch(postOrder(data));
+        reset({items: []});
     };
 
 
@@ -81,15 +81,6 @@ export function OrderTable() {
         </FormProvider>
     )
 }
-
-// const onSubmit = async(data: IOrder[]) => {
-//     try {
-//         const response = await axios.post("https://localhost:8080/order", data);
-//         const { errors = {} } = response.data;
-//     } catch (error) {
-//         alert("Submitting form failed!")
-//     }
-// }
 
 const FormArray = () => {
     const { control } = useFormContext();

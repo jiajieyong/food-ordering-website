@@ -31,7 +31,6 @@ export function OrderRow({ index, value, remove, update }: IRowProps) {
     const dispatch = useAppDispatch();
     const { register, formState: { errors } } = useFormContext();
     const { identifier, itemName, pricing, quantity } = value;
-    console.log('errors', errors);
 
     return (
         <TableRow>
