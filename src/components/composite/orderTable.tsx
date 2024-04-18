@@ -9,6 +9,8 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { Button } from "../ui/button";
+import { Checkbox } from '@/components/ui/checkbox';
 import { OrderRow } from "./orderRow";
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { getTotalPrice, postOrder } from '@/redux/orderSlice';
@@ -58,6 +60,7 @@ export function OrderTable() {
     return (
         <FormProvider {...methods} >
         <form onSubmit={methods.handleSubmit(onSubmit)}>
+
             <Table>
                 <TableHeader>
                     <TableRow>
@@ -81,8 +84,24 @@ export function OrderTable() {
                     </TableRow>
                 </TableFooter>
             </Table>
+            <div className="flex flex-col">
+                <div className="items-top flex space-x-2">
+                    <Checkbox id="terms1" required={true}/>
+                    <div className="grid gap-1.5 leading-none">
+                        <label
+                        htmlFor="terms1"
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                            I agree I have no food allergy
+                        </label>
+                    </div>
+                </div>
             {errors && <span className="error-message">{errors.items?.root?.message}</span>}
-            <input type="submit" />
+                <Button className={"my-8"}>
+                    Submit
+                </Button>
+
+            </div>
         </form>
         </FormProvider>
     )

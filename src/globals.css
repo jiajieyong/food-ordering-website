@@ -21,6 +21,8 @@ body {
   background: transparent,
 }
 
+.error-message { color: hsl(0, 80%, 50%) }
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
