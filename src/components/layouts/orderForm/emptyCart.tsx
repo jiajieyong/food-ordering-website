@@ -1,5 +1,7 @@
+import { useState } from "react";
 import Image from "next/image";
 import _ from 'lodash';
+import { Button } from "../../ui/button";
 import {
     TableRow,
     TableCell
@@ -14,11 +16,23 @@ import {
     SelectValue,
 } from '@/components/ui/select';
 import { useMenuItems } from "@/hooks/useMenuItems";
-
+import { addToOrder } from "@/redux/orderSlice";
+import { useAppDispatch } from "@/hooks/hooks";
+import { useFormContext } from 'react-hook-form';
 
 export const EmptyCart = () => {
+    const dispatch = useAppDispatch();
+    const { reset } = useFormContext();
+    const [selectedItem, setSelectedItem] = useState('');
     const menu = useMenuItems();
     const menuGroup = Object.groupBy(Object.values(menu), ({ category}) => category);
+
+
+    function onSubmit() {
+        dispatch(addToOrder(selectedItem));
+        const item = menu[selectedItem];
+        reset({items: [{itemName: item.name, pricing: item.pricing, quantity: 1, identifier: selectedItem}]});
+    }
 
     return (
         <TableRow>
@@ -33,7 +47,7 @@ export const EmptyCart = () => {
             </TableCell>
             <TableCell colSpan={4}>
                 Oh no! Your cart is empty
-                <Select>
+                <Select onValueChange={(e) => setSelectedItem(e)}>
                     <SelectTrigger className="w-[280px] my-4">
                         <SelectValue placeholder="Select a menu item" />
                     </SelectTrigger>
@@ -54,6 +68,12 @@ export const EmptyCart = () => {
                         }
                     </SelectContent>
                 </Select>
+                <Button 
+                    variant="outline" 
+                    onClick={onSubmit}
+                >
+                    Add to cart
+                </Button>
             </TableCell>
         </TableRow>
     )

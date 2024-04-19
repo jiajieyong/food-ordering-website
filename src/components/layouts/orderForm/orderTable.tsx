@@ -58,7 +58,6 @@ export function OrderTable({onSuccess}: IProps) {
             });
     };
 
-
     return (
         <>
             <FormProvider {...methods} >
