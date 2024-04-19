@@ -18,7 +18,7 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: transparent,
+  background: hsl(var(37, 100, 96.9));
 }
 
 .error-message { color: hsl(0, 80%, 50%) }
