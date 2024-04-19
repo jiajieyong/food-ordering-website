@@ -2,7 +2,7 @@
 import { Provider } from "react-redux";
 import { store } from '../redux/store';
 
-import Navigation from  "../components/composite/navigation";
+import Navigation from  "../components/layouts/navigationBar/navigation";
 import "../globals.css";
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (

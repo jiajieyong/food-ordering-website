@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { fn } from '@storybook/test';
-import Navigation from "../components/composite/navigation";
+import Navigation from "../components/layouts/navigationBar/navigation";
 
 const meta = {
     title: 'Composite/Navigation',
