@@ -1,5 +1,5 @@
-import {  Menubar, MenubarCheckboxItem, MenubarContent, MenubarLabel, MenubarMenu, MenubarTrigger} from '../ui/menubar';
-import { Button } from '../ui/button';
+import {  Menubar, MenubarCheckboxItem, MenubarContent, MenubarLabel, MenubarMenu, MenubarTrigger} from '../../ui/menubar';
+import { Button } from '../../ui/button';
 import { ListFilter } from  "lucide-react";
 
 interface IProps {

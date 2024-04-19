@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CardDisplay } from "../components/composite/cardDisplay";
+import { CardDisplay } from "../components/layouts/menu/menuItem";
 
 const meta = {
     title: 'Composite/Card',

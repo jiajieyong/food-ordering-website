@@ -1,6 +1,6 @@
 "use client";
-import { CardDisplay } from "../../components/composite/cardDisplay";
-import { Filter } from "../../components/composite/filter";
+import { MenuItem } from "../../components/layouts/menu/menuItem";
+import { Filter } from "../../components/layouts/menu/filter";
 import { useFilterOptions, useFilterItems } from "@/hooks/useFilter";
 import { useMenuItems } from "@/hooks/useMenuItems";
 
@@ -17,7 +17,7 @@ const MenuPage = () => {
       <div className="grid grid-cols-1 tablet:grid-cols-3 laptop:grid-cols-4 gap-4">
           {
             filteredMenu.map((item: IMenuItem, index) => (
-              <CardDisplay key={index} detail={item} />
+              <MenuItem key={index} detail={item} />
             ))
           }
       </div>

@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { cn } from "@/lib/utils"
-import { Button } from "../ui/button"
+import { Button } from "../../ui/button"
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "../ui/card"
+} from "../../ui/card"
 import { addToOrder } from "@/redux/orderSlice";
 import { useAppDispatch } from "@/hooks/hooks";
 
@@ -16,7 +16,7 @@ interface IDetails {
   detail: IMenuItem;
 }
 
-export function CardDisplay(props: IDetails) {
+export function MenuItem(props: IDetails) {
   const { detail } = props;
   const { id, name, pricing, description, category, imagePath } = detail;
   const dispatch = useAppDispatch();
