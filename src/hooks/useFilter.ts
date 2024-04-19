@@ -1,13 +1,26 @@
 import { useState, useMemo } from "react";
 
+function updateFilter(current: string[], selected: string): string[] {
+    if (selected === 'All' && !current.includes('All')) {
+        return ['All'];
+    } else {
+        current = current.filter((el: string) => el !== 'All');
+    }
+
+    if(current.includes(selected)) {
+        current = current.filter((el: string) => el !== selected);
+        return current.length === 0 ? ['All'] : current;
+    } else {
+        return current.concat(selected)
+    }
+}
+
 export function useFilterOptions(filterList: string[]) {
     const [checkedSelection, setCheckedSelection] = useState([filterList[0]]);
 
     function onCheckedChange(item: string) {
         setCheckedSelection((current) =>
-            current.includes(item)
-        ? current.filter((el) => el !== item)
-        : current.concat(item)
+            updateFilter(current,item)
         )
     }
 
