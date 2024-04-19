@@ -1,4 +1,4 @@
-import { Queue } from "@/components/composite/queue";
+import { Queue } from "../../components/layouts/queue/queue";
 
 const QueuePage = () => {
   return (

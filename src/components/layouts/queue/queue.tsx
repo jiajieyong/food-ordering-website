@@ -10,7 +10,7 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
-  } from "../ui/card"
+  } from "../../ui/card"
 
 export function Queue() {
     const dispatch = useAppDispatch();
