@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import { OrderTable } from '../../components/composite/orderTable';
-import { SuccessBanner } from '../../components/composite/successBanner';
+import { OrderTable } from '../../components/layouts/orderForm/orderTable';
+import { SuccessBanner } from '../../components/layouts/orderForm/successBanner';
 
 const Order = () => {
   const [successBanner, setSuccessBanner] = useState(false);

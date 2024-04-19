@@ -2,14 +2,14 @@ import {
     TableCell,
     TableRow,
 } from "@/components/ui/table"
-import { Label } from "../ui/label"
+import { Label } from "../../ui/label"
 import {
     ToggleGroup,
     ToggleGroupItem,
 } from "@/components/ui/toggle-group";
 import { useAppDispatch } from '@/hooks/hooks';
 import { incrementQuantity, decrementQuantity, removeFromOrder } from '@/redux/orderSlice';
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { Trash2 } from  "lucide-react";
 import { FieldValues, UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
 import FormField from './formField'

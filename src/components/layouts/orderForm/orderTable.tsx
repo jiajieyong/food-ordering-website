@@ -9,7 +9,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import { DeclarationBox } from './declarationBox';
 import { OrderRow } from "./orderRow";
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';

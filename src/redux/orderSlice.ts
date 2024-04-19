@@ -1,7 +1,7 @@
 import { createSlice, createSelector, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import axios from 'axios';
-import { IFormValues } from '@/components/composite/orderTable';
+import { IFormValues } from '@/components/layouts/orderForm/orderTable';
 
 type SubmissionState = "SENDING" | "READY" | "ERROR";
 interface OrderState {
