@@ -1,5 +1,5 @@
 "use client";
-import { useForm, FormProvider, useFieldArray, useFormContext } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import {
     Table,
     TableBody,
@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "../../ui/button";
 import { DeclarationBox } from './declarationBox';
-import { OrderRow } from "./orderRow";
+import { OrderArray } from "./orderArray";
 import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { getTotalPrice, postOrder } from '@/redux/orderSlice';
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -37,16 +37,13 @@ export function OrderTable({onSuccess}: IProps) {
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const order = useAppSelector((state) => state.order);
     const totalPrice = useAppSelector(getTotalPrice);
-    const methods = useForm(
-        {
-            defaultValues:  {
-                items: Object.entries(order.items).map(([identifier, quantity]) => (
-                    { itemName: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
-                )),
-            },
+    const cartItems = Object.entries(order.items).map(([identifier, quantity]) => (
+        { itemName: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
+    ));
+    const methods = useForm({
+            defaultValues: { items: cartItems},
             resolver: zodResolver(FormFieldSchema),
-        }
-    );
+    });
     const { reset, formState: {errors}} = methods;
 
     const onSubmit = (data:IFormValues) => {
@@ -77,7 +74,7 @@ export function OrderTable({onSuccess}: IProps) {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        <FormArray />
+                        <OrderArray />
                     </TableBody>
                     <TableFooter>
                         <TableRow>
@@ -91,7 +88,7 @@ export function OrderTable({onSuccess}: IProps) {
                 </Table>
                 <div className="flex flex-col">
                     <DeclarationBox />
-                {errors && <span className="error-message">{errors.items?.root?.message}</span>}
+                        {errors && <span className="error-message">{errors.items?.root?.message}</span>}
                     <Button className={"my-8"}>
                         Submit
                     </Button>
@@ -99,24 +96,5 @@ export function OrderTable({onSuccess}: IProps) {
             </form>
             </FormProvider>
         </>
-    )
-}
-
-const FormArray = () => {
-    const { control } = useFormContext();
-    const { fields, remove, update } = useFieldArray({
-        control,
-        name: 'items'
-    });
-
-    return (fields.map((field, index) => (
-        <OrderRow
-            key={field.id}
-            index={index}
-            value={field}
-            remove={remove}
-            update={update}
-        />
-        ))
     )
 }

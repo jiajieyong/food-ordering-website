@@ -13,13 +13,6 @@ import { Button } from "../../ui/button";
 import { Trash2 } from  "lucide-react";
 import { FieldValues, UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
 import FormField from './formField'
-
-interface IDetails {
-    detail: IMenuItem;
-    index: number;
-    quantity: number;
-}
-
 interface IRowProps {
     index: number;
     value: any;
@@ -27,7 +20,7 @@ interface IRowProps {
     update: UseFieldArrayUpdate<FieldValues, "items">
 }
 
-export function OrderRow({ index, value, remove, update }: IRowProps) {
+export function FormFieldRow({ index, value, remove, update }: IRowProps) {
     const dispatch = useAppDispatch();
     const { register, formState: { errors } } = useFormContext();
     const { identifier, itemName, pricing, quantity } = value;
