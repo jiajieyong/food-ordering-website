@@ -1,5 +1,7 @@
 import Image from "next/image"
+import { useAppDispatch } from "@/hooks/hooks";
 import { cn } from "@/lib/utils"
+import { addToOrder } from "@/redux/orderSlice";
 import { Button } from "../../ui/button"
 import {
   Card,
@@ -9,8 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from "../../ui/card"
-import { addToOrder } from "@/redux/orderSlice";
-import { useAppDispatch } from "@/hooks/hooks";
 
 interface IDetails {
   detail: IMenuItem;

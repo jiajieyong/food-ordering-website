@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 type QueueStatus = "IDLE" | "LOADING" | "SUCCESSFUL" | "ERROR";

@@ -1,6 +1,6 @@
+import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import { useAppSelector } from '@/hooks/hooks';
-import { ShoppingCart } from 'lucide-react';
 import { getMemoizedNumItems } from '@/redux/orderSlice';
 
 const CartNavigation = () => {

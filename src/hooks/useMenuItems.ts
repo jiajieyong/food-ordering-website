@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useAppSelector, useAppDispatch } from "@/hooks/hooks";
-import { receivedMenuItems } from '../redux/menuItemSlice';
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { getMenu } from "@/services/api";
+import { receivedMenuItems } from '../redux/menuItemSlice';
 
 export const useMenuItems = () => {
     const dispatch = useAppDispatch();
@@ -10,7 +10,7 @@ export const useMenuItems = () => {
         getMenu().then((menu) => {
             dispatch(receivedMenuItems(menu))
         });
-    }, []);
+    }, [dispatch]);
 
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
 

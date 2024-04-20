@@ -1,10 +1,10 @@
 "use client";
 import { Provider } from "react-redux";
+import { Toaster } from "@/components/ui/toaster";
+import Navigation from  "../components/layouts/navigationBar/navigation";
 import { store } from '../redux/store';
 
-import Navigation from  "../components/layouts/navigationBar/navigation";
 import "../globals.css";
-import { Toaster } from "@/components/ui/toaster";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (

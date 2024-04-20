@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useMemo, useState } from "react";
 
 function updateFilter(current: string[], selected: string): string[] {
     if (selected === 'All' && !current.includes('All')) {

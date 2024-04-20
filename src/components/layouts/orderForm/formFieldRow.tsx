@@ -1,18 +1,18 @@
+import { Trash2 } from  "lucide-react";
+import { FieldValues, UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
 import {
     TableCell,
     TableRow,
 } from "@/components/ui/table"
-import { Label } from "../../ui/label"
 import {
     ToggleGroup,
     ToggleGroupItem,
 } from "@/components/ui/toggle-group";
 import { useAppDispatch } from '@/hooks/hooks';
-import { incrementQuantity, decrementQuantity, removeFromOrder } from '@/redux/orderSlice';
-import { Button } from "../../ui/button";
-import { Trash2 } from  "lucide-react";
-import { FieldValues, UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
+import { decrementQuantity, incrementQuantity, removeFromOrder } from '@/redux/orderSlice';
 import FormField from './formField'
+import { Button } from "../../ui/button";
+import { Label } from "../../ui/label"
 interface IRowProps {
     index: number;
     value: any;

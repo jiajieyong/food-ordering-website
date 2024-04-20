@@ -1,20 +1,20 @@
 "use client";
 
+import { RefreshCcw } from 'lucide-react';
 import { useEffect } from 'react';
+import { ToastAction } from "@/components/ui/toast"
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useToast } from "@/hooks/useToast"
 import { dequeue } from '@/redux/orderSlice';
 import { getQueue } from "@/redux/queueSlice";
-import { RefreshCcw } from 'lucide-react';
-import { useToast } from "@/hooks/useToast"
-import { ToastAction } from "@/components/ui/toast"
 
+import { LoadingPage } from './loadingPage';
 import {
     Card,
     CardDescription,
     CardHeader,
     CardTitle,
   } from "../../ui/card"
-import { LoadingPage } from './loadingPage';
 
 export function Queue() {
     const dispatch = useAppDispatch();

@@ -1,6 +1,6 @@
+import { ReceiptText } from 'lucide-react';
 import Link from 'next/link';
 import { useAppSelector } from '@/hooks/hooks';
-import { ReceiptText } from 'lucide-react';
 
 const OrderNavigation = () => {
     const order = useAppSelector((state) => state.order.queueNumber);

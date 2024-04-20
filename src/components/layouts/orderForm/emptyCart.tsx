@@ -1,13 +1,13 @@
-import { useState } from "react";
 import Image from "next/image";
-import { Button } from "../../ui/button";
-import { TableRow, TableCell } from "@/components/ui/table";
+import { useState } from "react";
 
+import { useFormContext } from 'react-hook-form';
+import { TableCell, TableRow } from "@/components/ui/table";
+import { useAppDispatch } from "@/hooks/hooks";
 import { useMenuItems } from "@/hooks/useMenuItems";
 import { addToOrder } from "@/redux/orderSlice";
-import { useAppDispatch } from "@/hooks/hooks";
-import { useFormContext } from 'react-hook-form';
 import { MenuDropDown } from "./menuDropdown";
+import { Button } from "../../ui/button";
 
 export const EmptyCart = () => {
     const dispatch = useAppDispatch();

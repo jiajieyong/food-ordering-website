@@ -1,9 +1,9 @@
 "use client";
 
+import { Utensils } from 'lucide-react';
 import Link from 'next/link';
 import CartNavigation from './cartNavigation';
 import OrderNavigation from './orderNavigation';
-import { Utensils } from 'lucide-react';
 
 const Navigation = () => {
     return (

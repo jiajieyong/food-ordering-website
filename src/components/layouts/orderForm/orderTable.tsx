@@ -1,5 +1,6 @@
 "use client";
-import { useForm, FormProvider } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from 'react-hook-form';
 import {
     Table,
     TableBody,
@@ -9,15 +10,14 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import { Button } from "../../ui/button";
+import { ToastAction } from "@/components/ui/toast"
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { useToast } from "@/hooks/useToast"
+import { getTotalPrice, postOrder } from '@/redux/orderSlice';
+import { FormFieldSchema } from "@/types/form";
 import { DeclarationBox } from './declarationBox';
 import { OrderArray } from "./orderArray";
-import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
-import { getTotalPrice, postOrder } from '@/redux/orderSlice';
-import { zodResolver } from "@hookform/resolvers/zod";
-import { FormFieldSchema } from "@/types/form";
-import { useToast } from "@/hooks/useToast"
-import { ToastAction } from "@/components/ui/toast"
+import { Button } from "../../ui/button";
 
 export type IOrder = {
     identifier: string,

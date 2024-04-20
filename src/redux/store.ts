@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import orderReducer from "./orderSlice";
 import menuItemReducer from  "./menuItemSlice";
+import orderReducer from "./orderSlice";
 import queueReducer from './queueSlice';
 
 export const store = configureStore({
