@@ -48,7 +48,6 @@ export function OrderTable({onSuccess}: IProps) {
             resolver: zodResolver(FormFieldSchema),
     });
     const { reset, formState: {errors}} = methods;
-    console.log(errors);
 
     const onSubmit = (data:IFormValues) => {
         dispatch(postOrder(data))

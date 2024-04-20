@@ -29,9 +29,11 @@ export const EmptyCart = () => {
 
 
     function onSubmit() {
-        dispatch(addToOrder(selectedItem));
-        const item = menu[selectedItem];
-        reset({items: [{itemName: item.name, pricing: item.pricing, quantity: 1, identifier: selectedItem}]});
+        if (selectedItem) {
+            dispatch(addToOrder(selectedItem));
+            const item = menu[selectedItem];
+            reset({items: [{itemName: item.name, pricing: item.pricing, quantity: 1, identifier: selectedItem}]});
+        }
     }
 
     return (
