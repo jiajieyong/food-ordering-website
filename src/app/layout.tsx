@@ -4,6 +4,8 @@ import { store } from '../redux/store';
 
 import Navigation from  "../components/layouts/navigationBar/navigation";
 import "../globals.css";
+import { Toaster } from "@/components/ui/toaster";
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html>
@@ -16,6 +18,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           <Navigation />
             {children}
         </Provider>
+        <Toaster />
       </body>
     </html>
   );

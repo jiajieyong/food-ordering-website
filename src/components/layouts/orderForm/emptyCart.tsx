@@ -68,8 +68,8 @@ export const EmptyCart = () => {
                         }
                     </SelectContent>
                 </Select>
-                <Button 
-                    variant="outline" 
+                <Button
+                    variant="outline"
                     onClick={onSubmit}
                 >
                     Add to cart

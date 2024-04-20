@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { getQueue } from "@/redux/queueSlice";
 import { RefreshCcw } from 'lucide-react';
+import { useToast } from "@/hooks/useToast"
+import { ToastAction } from "@/components/ui/toast"
 
 import {
     Card,
@@ -11,25 +13,35 @@ import {
     CardHeader,
     CardTitle,
   } from "../../ui/card"
+import { LoadingPage } from './loadingPage';
 
 export function Queue() {
     const dispatch = useAppDispatch();
     const queue = useAppSelector((state) => state.queue);
     const order = useAppSelector((state) => state.order.queueNumber);
+    const { toast } = useToast();
     const { queueItems, status, error } = queue;
 
     useEffect(() => {
         if (status === 'IDLE') {
             dispatch(getQueue())
         }
-    }, [status, dispatch])
+    }, [status, dispatch]);
 
+    useEffect(() => {
+      if (status === 'ERROR') {
+        toast({
+          variant: "destructive",
+          title: "Uh oh! Something went wrong.",
+          description: "There was a problem with your request.",
+          action: <ToastAction altText="Try again">Try again</ToastAction>,})
+      }
+  }, [status, toast])
 
     return (
         <>
-            {(status === "LOADING") && <div>loading data</div>}
-            {(status === "ERROR") && <div>{error}</div>}
-            {(status === "SUCCESSFUL") &&
+            {(status === "LOADING") && <LoadingPage />}
+            {
                 (
                   <main className="grid flex-1 items-start gap-4 p-4 mobile:px-6 mobile:py-0 tablet:gap-8 laptop:grid-cols-3 desktop:grid-cols-3">
                   <div className="grid auto-rows-max items-start gap-4 tablet:gap-8 laptop:col-span-3">

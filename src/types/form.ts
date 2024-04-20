@@ -36,4 +36,4 @@ export const FormFieldSchema = z.object({
     items: z.array(FieldSchema).nonempty({
         message: "Order cannnot be empty!",
     }).max(2, {message: "Limited to 2 food orders"})
-});
+}).required();

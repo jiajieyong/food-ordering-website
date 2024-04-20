@@ -16,6 +16,8 @@ import { useAppSelector, useAppDispatch } from '@/hooks/hooks';
 import { getTotalPrice, postOrder } from '@/redux/orderSlice';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormFieldSchema } from "@/types/form";
+import { useToast } from "@/hooks/useToast"
+import { ToastAction } from "@/components/ui/toast"
 
 export type IOrder = {
     identifier: string,
@@ -34,6 +36,7 @@ interface IProps {
 
 export function OrderTable({onSuccess}: IProps) {
     const dispatch = useAppDispatch();
+    const { toast } = useToast();
     const menuItems = useAppSelector((state) => state.menuItem.menuItems);
     const order = useAppSelector((state) => state.order);
     const totalPrice = useAppSelector(getTotalPrice);
@@ -41,20 +44,25 @@ export function OrderTable({onSuccess}: IProps) {
         { itemName: menuItems[identifier].name,  pricing: menuItems[identifier].pricing, quantity: quantity, identifier: identifier}
     ));
     const methods = useForm({
-            defaultValues: { items: cartItems},
+            defaultValues: { items: cartItems },
             resolver: zodResolver(FormFieldSchema),
     });
     const { reset, formState: {errors}} = methods;
+    console.log(errors);
 
     const onSubmit = (data:IFormValues) => {
         dispatch(postOrder(data))
             .unwrap()
-            .then((originalPromiseResult) => {
+            .then(() => {
                 reset({items: []});
                 onSuccess();
             })
-            .catch((rejectedValueOrSerializedError) => {
-                console.log('error');
+            .catch(() => {
+                toast({
+                    variant: "destructive",
+                    title: "Uh oh! Something went wrong.",
+                    description: "There was a problem with your request.",
+                    action: <ToastAction altText="Try again">Try again</ToastAction>,})
             });
     };
 
@@ -87,7 +95,7 @@ export function OrderTable({onSuccess}: IProps) {
                 </Table>
                 <div className="flex flex-col">
                     <DeclarationBox />
-                        {errors && <span className="error-message">{errors.items?.root?.message}</span>}
+                        {errors && <span className="error-message">{errors.items?.root?.message || errors.items?.message }</span>}
                     <Button className={"my-8"}>
                         Submit
                     </Button>
