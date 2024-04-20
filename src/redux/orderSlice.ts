@@ -47,6 +47,9 @@ const orderSlice = createSlice({
         removeFromOrder(state,action: PayloadAction<string>) {
             delete state.items[action.payload];
         },
+        dequeue(state) {
+            state.queueNumber.shift();
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(postOrder.pending, (state, action) => {
@@ -63,7 +66,7 @@ const orderSlice = createSlice({
     }
 });
 
-export const { addToOrder, incrementQuantity, decrementQuantity, removeFromOrder } = orderSlice.actions;
+export const { addToOrder, incrementQuantity, decrementQuantity, removeFromOrder, dequeue } = orderSlice.actions;
 export default orderSlice.reducer;
 
 export const getMemoizedNumItems = createSelector(

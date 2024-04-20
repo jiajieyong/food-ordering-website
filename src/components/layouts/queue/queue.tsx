@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
+import { dequeue } from '@/redux/orderSlice';
 import { getQueue } from "@/redux/queueSlice";
 import { RefreshCcw } from 'lucide-react';
 import { useToast } from "@/hooks/useToast"
@@ -17,10 +18,9 @@ import { LoadingPage } from './loadingPage';
 
 export function Queue() {
     const dispatch = useAppDispatch();
-    const queue = useAppSelector((state) => state.queue);
+    const { queueItems, status }  = useAppSelector((state) => state.queue);
     const order = useAppSelector((state) => state.order.queueNumber);
     const { toast } = useToast();
-    const { queueItems, status, error } = queue;
 
     useEffect(() => {
         if (status === 'IDLE') {
@@ -52,7 +52,12 @@ export function Queue() {
                               Your Orders
                                 <RefreshCcw
                                   onClick={
-                                    () => dispatch(getQueue())
+                                    () => {
+                                      if (order[0] === queueItems.collection) {
+                                        dispatch(dequeue());
+                                      }
+                                      dispatch(getQueue());
+                                    }
                                     }
                                   />
                               </CardTitle>
