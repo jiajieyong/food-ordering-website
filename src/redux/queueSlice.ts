@@ -29,7 +29,6 @@ export const getQueue = createAsyncThunk('queue/get', async (_, thunkAPI) => {
         });
         return res.data;
     } catch (error) {
-        console.log(error);
         return thunkAPI.rejectWithValue(error);
     }
 });
