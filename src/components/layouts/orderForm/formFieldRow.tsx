@@ -1,5 +1,7 @@
 import { Trash2 } from  "lucide-react";
 import { FieldValues, UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label"
 import {
     TableCell,
     TableRow,
@@ -11,8 +13,6 @@ import {
 import { useAppDispatch } from '@/hooks/hooks';
 import { decrementQuantity, incrementQuantity, removeFromOrder } from '@/redux/orderSlice';
 import FormField from './formField'
-import { Button } from "../../ui/button";
-import { Label } from "../../ui/label"
 interface IRowProps {
     index: number;
     value: any;

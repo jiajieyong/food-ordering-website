@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { CardDisplay } from "../components/layouts/menu/menuItem";
+import { MenuItem } from "@/components/layouts/menu/menuItem";
 
 const meta = {
     title: 'Composite/Card',
-    component: CardDisplay,
+    component: MenuItem,
     parameters: {
         layout: 'centered',
     },
-    args: { dishName: "Dish Name", pricing: 99.99, description: "Food Description", category: "noodle" , image: "beehoon"  },
-} satisfies Meta<typeof CardDisplay>;
+    args: { detail: {id: "123", name: "Dish Name", pricing: 99.99, description: "Food Description", category: "noodle", imagePath: "beehoon"} },
+} satisfies Meta<typeof MenuItem>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const CardDisplayStory: Story = {};
+export const MenuItemStory: Story = {};

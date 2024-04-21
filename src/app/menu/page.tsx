@@ -1,8 +1,8 @@
 "use client";
+import { Filter } from "@/components/layouts/menu/filter";
+import { MenuItem } from "@/components/layouts/menu/menuItem";
 import { useFilterItems, useFilterOptions } from "@/hooks/useFilter";
 import { useMenuItems } from "@/hooks/useMenuItems";
-import { Filter } from "../../components/layouts/menu/filter";
-import { MenuItem } from "../../components/layouts/menu/menuItem";
 
 const MenuPage = () => {
   const CHECK_ITEMS = ['All', 'Noodle', 'Rice', 'Side Dish'];

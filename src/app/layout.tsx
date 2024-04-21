@@ -1,8 +1,8 @@
 "use client";
 import { Provider } from "react-redux";
+import Navigation from  "@/components/layouts/navigationBar/navigation";
 import { Toaster } from "@/components/ui/toaster";
-import Navigation from  "../components/layouts/navigationBar/navigation";
-import { store } from '../redux/store';
+import { store } from '@/redux/store';
 
 import "../globals.css";
 
