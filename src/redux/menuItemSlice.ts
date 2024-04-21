@@ -3,10 +3,10 @@ interface MenuItemsState {
     menuItems: { [id: string]: IMenuItem}
 }
 
-const initialState: MenuItemsState ={
+export const initialState: MenuItemsState = {
     menuItems: {}
 }
-const menuItemsSlice = createSlice({
+export const menuItemsSlice = createSlice({
     name: 'menuItems',
     initialState,
     reducers: {
