@@ -8,7 +8,7 @@ interface IQueueResult {
     preparing: number[],
 }
 
-interface IQueueState {
+export interface IQueueState {
     queueItems: IQueueResult,
     status: QueueStatus,
     error?: string
