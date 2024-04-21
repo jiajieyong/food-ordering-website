@@ -22,7 +22,7 @@ export function Filter({list, filterList, handleChange}: IProps) {
                         <span>Filter</span>
                     </Button>
                 </MenubarTrigger>
-                <MenubarContent align="end">
+                <MenubarContent align="end" className="bg-white">
                     <MenubarLabel>Filter by</MenubarLabel>
                     {list.map((item) => (
                         <MenubarCheckboxItem
