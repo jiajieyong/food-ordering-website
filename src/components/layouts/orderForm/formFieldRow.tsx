@@ -1,15 +1,8 @@
 import { Trash2 } from  "lucide-react";
-import { FieldValues, UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
+import { UseFieldArrayRemove, UseFieldArrayUpdate, useFormContext } from 'react-hook-form';
 import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label"
-import {
-    TableCell,
-    TableRow,
-} from "@/components/ui/table"
-import {
-    ToggleGroup,
-    ToggleGroupItem,
-} from "@/components/ui/toggle-group";
+import { TableCell, TableRow } from "@/components/ui/table"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { useAppDispatch } from '@/hooks/hooks';
 import { decrementQuantity, incrementQuantity, removeFromOrder } from '@/redux/orderSlice';
 import FormField from './formField'
@@ -25,6 +18,21 @@ export function FormFieldRow({ index, value, remove, update }: IRowProps) {
     const { register, formState: { errors } } = useFormContext<IFormValues>();
     const { identifier, itemName, pricing, quantity } = value;
 
+    const decreaseQuantity = () => {
+        dispatch(decrementQuantity(identifier));
+        update(index, {...value, quantity: quantity-1});
+    }
+
+    const increaseQuantity = () => {
+        dispatch(incrementQuantity(identifier));
+        update(index, {...value, quantity: quantity+1});
+    }
+
+    const deleteRow = () => {
+        dispatch(removeFromOrder(identifier));
+        remove(index);
+    }
+
     return (
         <TableRow>
             <TableCell className="font-semibold">
@@ -32,33 +40,14 @@ export function FormFieldRow({ index, value, remove, update }: IRowProps) {
                 {itemName}
             </TableCell>
             <TableCell>
-                <Label htmlFor="stock-1" className="sr-only">
-                    Price
-                </Label>
                 <input type="hidden" {...register(`items.${index}.pricing`)} value={pricing} />
                 S$ {pricing}
             </TableCell>
             <TableCell>
-                <Label htmlFor="price-1" className="sr-only">
-                    Quantity
-                </Label>
-                <ToggleGroup
-                    type="multiple"
-                    variant="outline"
-                >
-                <ToggleGroupItem
-                    value="-"
-                    onClick={() => {
-                        dispatch(decrementQuantity(identifier));
-                        update(index, {...value, quantity: quantity-1})
-                    }}
-                >-
-                </ToggleGroupItem>
-                <div>{quantity}</div>
-                <ToggleGroupItem value="+" onClick={() => {
-                    dispatch(incrementQuantity(identifier));
-                    update(index, {...value, quantity: quantity+1})
-                }}>+</ToggleGroupItem>
+                <ToggleGroup type="multiple" variant="outline">
+                    <ToggleGroupItem value="-" onClick={decreaseQuantity}>-</ToggleGroupItem>
+                        <div>{quantity}</div>
+                    <ToggleGroupItem value="+" onClick={increaseQuantity}>+</ToggleGroupItem>
                 </ToggleGroup>
                 <FormField
                     type="hidden"
@@ -77,11 +66,7 @@ export function FormFieldRow({ index, value, remove, update }: IRowProps) {
                     variant="outline"
                     size="sm"
                     className="flex items-center h-7 gap-1 text-sm"
-                    onClick={() => {
-                        dispatch(removeFromOrder(identifier));
-                        remove(index);
-                        }
-                    }
+                    onClick={deleteRow}
                 >
                     <Trash2 className="h-3.5 w-3.5" />
                 </Button>
