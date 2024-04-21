@@ -1,25 +1,28 @@
 import { FieldError, FieldValues, UseFormRegister } from "react-hook-form";
 import { z, ZodType } from "zod";
 
-export type FormData = {
+type FormData = {
     itemName: string;
     pricing: number;
     quantity: number;
 };
 
+export type ValidRegisterName =
+    | "items"
+    | `items.${number}`
+    | `items.${number}.itemName`
+    | `items.${number}.pricing`
+    | `items.${number}.quantity`
+    | `items.${number}.identifier`
+
 export type FormFieldProps = {
     type: string;
-    name: string;
-    register: UseFormRegister<FieldValues>;
+    name: ValidRegisterName;
+    register: UseFormRegister<IFormValues>;
     error: FieldError| undefined;
     value: string | number;
     valueAsNumber?: boolean;
 };
-
-export type ValidFieldNames =
-| "itemName"
-| "pricing"
-| "quantity"
 
 export const FieldSchema: ZodType<FormData> = z
 .object({

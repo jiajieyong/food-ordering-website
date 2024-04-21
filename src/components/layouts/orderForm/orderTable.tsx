@@ -18,18 +18,6 @@ import { FormFieldSchema } from "@/types/form";
 import { DeclarationBox } from './declarationBox';
 import { OrderArray } from "./orderArray";
 import { Button } from "../../ui/button";
-
-export type IOrder = {
-    identifier: string,
-    itemName: string,
-    quantity: number,
-    pricing: number
-}
-
-export interface IFormValues {
-    items: IOrder[]
-}
-
 interface IProps {
     onSuccess: () => void,
 }
@@ -49,7 +37,7 @@ export function OrderTable({onSuccess}: IProps) {
     });
     const { reset, formState: {errors}} = methods;
 
-    const onSubmit = (data:IFormValues) => {
+    const onSubmit = (data: IFormValues) => {
         dispatch(postOrder(data))
             .unwrap()
             .then(() => {

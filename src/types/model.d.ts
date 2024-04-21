@@ -6,3 +6,14 @@ interface IMenuItem {
     category: string;
     imagePath: string;
 }
+
+interface IOrder  {
+    identifier: string;
+    itemName: string;
+    quantity: number;
+    pricing: number;
+}
+
+interface IFormValues {
+    items: IOrder[]
+}

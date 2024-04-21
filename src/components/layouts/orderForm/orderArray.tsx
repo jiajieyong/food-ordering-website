@@ -4,7 +4,7 @@ import { FormFieldRow } from "./formFieldRow";
 
 
 export const OrderArray = () => {
-    const { control } = useFormContext();
+    const { control } = useFormContext<IFormValues>();
     const { fields, remove, update } = useFieldArray({
         control,
         name: 'items'
@@ -16,7 +16,7 @@ export const OrderArray = () => {
                 <FormFieldRow
                     key={field.id}
                     index={index}
-                    value={field}
+                    value={field as IOrder}
                     remove={remove}
                     update={update}
                 />

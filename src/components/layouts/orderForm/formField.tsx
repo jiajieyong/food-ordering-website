@@ -1,4 +1,4 @@
-import { FormFieldProps } from "@/types/form";
+import { FormFieldProps, ValidRegisterName } from "@/types/form";
 
 const FormField = ({
     type,
@@ -12,7 +12,7 @@ const FormField = ({
         <input
             type={type}
             value={value}
-            {...register(name, { valueAsNumber })}
+            {...register(name as ValidRegisterName, { valueAsNumber })}
         />
         {error && <span className="error-message">{error.message}</span>}
     </>

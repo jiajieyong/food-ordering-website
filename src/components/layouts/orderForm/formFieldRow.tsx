@@ -15,14 +15,14 @@ import { decrementQuantity, incrementQuantity, removeFromOrder } from '@/redux/o
 import FormField from './formField'
 interface IRowProps {
     index: number;
-    value: any;
+    value: IOrder;
     remove: UseFieldArrayRemove;
-    update: UseFieldArrayUpdate<FieldValues, "items">
+    update: UseFieldArrayUpdate<IFormValues, "items">
 }
 
 export function FormFieldRow({ index, value, remove, update }: IRowProps) {
     const dispatch = useAppDispatch();
-    const { register, formState: { errors } } = useFormContext();
+    const { register, formState: { errors } } = useFormContext<IFormValues>();
     const { identifier, itemName, pricing, quantity } = value;
 
     return (
