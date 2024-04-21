@@ -18,7 +18,7 @@ const menuItem: MenuItemsState = {
             imagePath: 'beehoon.jpg',
         },
         ['456'] : {
-            id: '123',
+            id: '456',
             name: 'Chicken rice',
             pricing: 5.5,
             description: "Hainanese Chicken Rice",
