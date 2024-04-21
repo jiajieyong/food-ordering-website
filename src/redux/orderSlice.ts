@@ -2,14 +2,14 @@ import { createAsyncThunk, createSelector, createSlice, PayloadAction } from '@r
 import axios from 'axios';
 import { RootState } from './store';
 
-type SubmissionState = "SENDING" | "READY" | "ERROR";
-interface OrderState {
+export type SubmissionState = "SENDING" | "READY" | "ERROR";
+export interface OrderState {
     items: { [id: string]: number};
     submissionState: SubmissionState;
     queueNumber: number[];
 }
 
-const initialState: OrderState ={
+export const initialState: OrderState = {
     items: {},
     submissionState: "READY",
     queueNumber: []
@@ -25,7 +25,7 @@ export const postOrder = createAsyncThunk('order/post', async (orders: IFormValu
     }
 )
 
-const orderSlice = createSlice({
+export const orderSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
