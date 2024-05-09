@@ -1,10 +1,9 @@
-"use client";
-import { Provider } from "react-redux";
+import ReduxProvider from "./reduxProvider";
 import Navigation from  "@/components/layouts/navigationBar/navigation";
 import { Toaster } from "@/components/ui/toaster";
-import { store } from '@/redux/store';
 
 import "../globals.css";
+
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -14,10 +13,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body>
 
-        <Provider store={store}>
+        <ReduxProvider>
           <Navigation />
             {children}
-        </Provider>
+        </ReduxProvider>
         <Toaster />
       </body>
     </html>
