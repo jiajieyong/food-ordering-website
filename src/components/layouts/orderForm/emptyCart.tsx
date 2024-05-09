@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useFormContext } from 'react-hook-form';
 import { Button } from "@/components/ui/button";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { useAppDispatch } from "@/hooks/hooks";
-import { useMenuItems } from "@/hooks/useMenuItems";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { addToOrder } from "@/redux/orderSlice";
 import { MenuDropDown } from "./menuDropdown";
 
@@ -13,7 +12,7 @@ export const EmptyCart = () => {
     const dispatch = useAppDispatch();
     const { reset } = useFormContext();
     const [selectedItem, setSelectedItem] = useState('');
-    const menu = useMenuItems();
+    const menu = useAppSelector((state) => state.menuItem.menuItems);
 
 
     function onSubmit() {
